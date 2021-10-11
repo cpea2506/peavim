@@ -1,5 +1,5 @@
 pea.plugins = {
-	{"fratajczak/one-monokai-vim"},
+	{ "fratajczak/one-monokai-vim" },
 	{ "ahmedkhalf/project.nvim" },
 	{ "glepnir/dashboard-nvim" },
 	{ "rafamadriz/friendly-snippets" },
@@ -105,24 +105,24 @@ pea.neovide_opts = {
 	neovide_cursor_animation_length = 0.1,
 }
 
-pea.null_ls = {
-	source = {
-		formatting = {
-			{
-				exe = "prettierd",
-				with = {},
-			},
-			{ exe = "black" },
-			{ exe = "rustfmt" },
-			{ exe = "stylua" },
-		},
-		diagnostics = {
-			{ exe = "flake8" },
-			{ exe = "eslint_d" },
-			{ exe = "stylelint" },
-		},
-	},
-}
+-- pea.null_ls = {
+-- 	source = {
+-- 		formatting = {
+-- 			{
+-- 				exe = "prettierd",
+-- 				with = {},
+-- 			},
+-- 			{ exe = "black" },
+-- 			{ exe = "rustfmt" },
+-- 			{ exe = "stylua" },
+-- 		},
+-- 		diagnostics = {
+-- 			{ exe = "flake8" },
+-- 			{ exe = "eslint_d" },
+-- 			{ exe = "stylelint" },
+-- 		},
+-- 	},
+-- }
 
 -- set keymap
 pea.keymap = {
@@ -141,7 +141,7 @@ pea.keymap = {
 	},
 	visual = {
 		["<C-s>"] = ":w!<CR>",
-	}
+	},
 }
 
 -- external plugins setup
@@ -149,7 +149,7 @@ pea.custom_plugins = {
 	"lualine/evil_lualine",
 	"dashboard",
 	"cmp",
-	 "null_ls",
+	"null_ls",
 	"lsp",
 }
 
@@ -159,35 +159,34 @@ pea.plugin_opts = {
 	move_key_modifier = "C",
 
 	-- exclude these from numbers
-	numbers_exclude = {"nvim_tree", "dashboard" },
+	numbers_exclude = { "nvim_tree", "dashboard" },
 
 	-- nvim-tree
 	nvim_tree_quit_on_open = 0,
-	nvim_tree_ignore = {".git", ".DS_Store", ".node_modules", ".cache"},
+	nvim_tree_ignore = { ".git", ".DS_Store", ".node_modules", ".cache" },
 	nvim_tree_icons = {
 		icons = {
-      default = "",
-      symlink = "",
-      git = {
-        unstaged = "",
-        staged = "S",
-        unmerged = "",
-        renamed = "➜",
-        deleted = "",
-        untracked = "U",
-        ignored = "◌",
-      },
-      folder = {
-        default = "",
-        open = "",
-        empty = "",
-        empty_open = "",
-        symlink = "",
-      },
+			default = "",
+			symlink = "",
+			git = {
+				unstaged = "",
+				staged = "S",
+				unmerged = "",
+				renamed = "➜",
+				deleted = "",
+				untracked = "U",
+				ignored = "◌",
+			},
+			folder = {
+				default = "",
+				open = "",
+				empty = "",
+				empty_open = "",
+				symlink = "",
+			},
 		},
-	}
+	},
 }
-
 
 require("numb").setup({})
 require("nvim_comment").setup({})
@@ -209,14 +208,14 @@ require("nvim-tree").setup({
 	open_on_tab = false,
 	open_on_setup = false,
 	update_focused_file = {
-		enable = true
+		enable = true,
 	},
 	view = {
 		side = "right",
 		auto_resize = true,
 		mappings = {
-			custom_only = false
-		}
+			custom_only = false,
+		},
 	},
 })
 
