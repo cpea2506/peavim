@@ -82,9 +82,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/CPea2506/.local/share/nvim/site/pack/packer/start/LuaSnip"
   },
-  ["barbar.nvim"] = {
+  ["bufferline.nvim"] = {
     loaded = true,
-    path = "/Users/CPea2506/.local/share/nvim/site/pack/packer/start/barbar.nvim"
+    path = "/Users/CPea2506/.local/share/nvim/site/pack/packer/start/bufferline.nvim"
   },
   ["cmp-buffer"] = {
     loaded = true,
