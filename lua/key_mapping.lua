@@ -6,7 +6,6 @@ M.set_keymap = function(keys)
 		insert = "i",
 		visual = "v",
 	}
-
 	for mode, map in pairs(keys) do
 		local key_mode = modes[mode]
 		local opts = { noremap = true, silent = true }
