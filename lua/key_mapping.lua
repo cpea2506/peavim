@@ -17,4 +17,8 @@ M.set_keymap = function(keys)
 	end
 end
 
+M.setup = function()
+	M.set_keymap(pea.keymap)
+end
+
 return M

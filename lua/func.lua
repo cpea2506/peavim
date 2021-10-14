@@ -74,35 +74,4 @@ M.plugin_install = function(plugs)
 	})
 end
 
-M.load_commands = function()
-	local autocmd = require("autocmd")
-
-	if pea.transparent_window then
-		autocmd.define_augroups({
-			transparent_window = {
-				{ "ColorScheme", "*", "hi Normal ctermbg=none guibg=none" },
-				{ "ColorScheme", "*", "hi clear SignColumn"},
-				{"ColorScheme", "*", "hi clear LineNr"},
-				{ "ColorScheme", "*", "hi NormalNC ctermbg=none guibg=none" },
-				{ "ColorScheme", "*", "hi MsgArea ctermbg=none guibg=none" },
-				{ "ColorScheme", "*", "hi TelescopeBorder ctermbg=none guibg=none" },
-				{ "ColorScheme", "*", "hi NvimTreeNormal ctermbg=none guibg=none" },
-			},
-		})
-		vim.cmd("let &fcs='eob: '")
-	end
-
-	if pea.yank_highlight then
-		autocmd.define_augroups({
-			yank_highlight = {
-				{
-					"TextYankPost",
-					"*",
-					"silent! lua vim.highlight.on_yank({higroup='IncSearch', timeout=200})",
-				},
-			},
-		})
-	end
-end
-
 return M
