@@ -18,6 +18,7 @@ local M = {
 	},
 
 	builtin = {
+		terminal = {},
 		dashboard = {},
 		cmp = {},
 		null_ls = {
