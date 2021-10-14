@@ -1,10 +1,10 @@
 pea.plugins = {
+	{ "andweeb/presence.nvim" },
+	{ "akinsho/toggleterm.nvim" },
 	{ "wbthomason/packer.nvim" },
 	{ "fratajczak/one-monokai-vim" },
 	{ "rafamadriz/friendly-snippets" },
 	{ "matze/vim-move" },
-	{ "andweeb/presence.nvim" },
-	{ "akinsho/toggleterm.nvim" },
 	{ "norcalli/nvim-colorizer.lua" },
 	{ "antoinemadec/FixCursorHold.nvim" },
 	{ "nvim-treesitter/nvim-treesitter" },
@@ -13,6 +13,10 @@ pea.plugins = {
 	{ "kabouzeid/nvim-lspinstall" },
 	{ "neovim/nvim-lspconfig" },
 	{ "onsails/lspkind-nvim" },
+	{ "windwp/nvim-autopairs" },
+	{ "p00f/nvim-ts-rainbow" },
+	{ "nacro90/numb.nvim" },
+	{ "myusuf3/numbers.vim" },
 	{
 		"hrsh7th/nvim-cmp",
 		requires = {
@@ -29,9 +33,13 @@ pea.plugins = {
 		},
 	},
 	{
+		"akinsho/bufferline.nvim",
+		requires = { "kyazdani42/nvim-web-devicons" },
+	},
+	{
 		"ChristianChiarulli/dashboard-nvim",
 		config = function()
-			require("lua.plugins.custom.dashboard").setup()
+			require("plugins.custom.dashboard").setup()
 		end,
 	},
 	{
@@ -52,10 +60,6 @@ pea.plugins = {
 		requires = { "nvim-lua/plenary.nvim" },
 	},
 	{
-		"romgrk/barbar.nvim",
-		requires = { "kyazdani42/nvim-web-devicons" },
-	},
-	{
 		"kyazdani42/nvim-tree.lua",
 		requires = { "kyazdani42/nvim-web-devicons" },
 	},
@@ -66,12 +70,6 @@ pea.plugins = {
 			opt = true,
 		},
 	},
-
-	{ "windwp/nvim-autopairs" },
-	{ "p00f/nvim-ts-rainbow" },
-
-	{ "nacro90/numb.nvim" },
-	{ "myusuf3/numbers.vim" },
 }
 
 -- vim setup
@@ -101,7 +99,7 @@ pea.vim_opts = {
 
 -- neovide setup
 pea.neovide_opts = {
-	neovide_transparency = 0.8,
+	neovide_transparency = 0.85,
 	neovide_cursor_vfx_mode = "sonicboom",
 	neovide_cursor_animation_length = 0.1,
 }
@@ -110,7 +108,9 @@ pea.builtin.null_ls.sources = {
 	formatting = {
 		{
 			exe = "prettierd",
-			filetypes = { "css" },
+			filetypes = {
+				"css",
+			},
 		},
 		{ exe = "black" },
 		{ exe = "rustfmt" },
@@ -127,15 +127,12 @@ pea.builtin.null_ls.sources = {
 pea.keymap = {
 	normal = {
 		["<C-s>"] = ":w<CR>",
-		["<C-q>"] = ":q<CR>",
 		["<C-b>"] = ":NvimTreeToggle<CR>",
-		["<Tab>"] = ":BufferNext<CR>",
-		["<S-Tab>"] = ":BufferPrevious<CR>",
-		["<C-e>"] = ":BufferClose<CR>",
 		["<C-p>"] = ":Telescope find_files<CR>",
-	},
-	insert = {
-		["<C-R>"] = "v:lua.MPairs.autopairs_cr()",
+		["<C-w>"] = ":lua lazygit_toggle()<CR>",
+		["<C-e>"] = ":bdelete<CR>",
+		["<Tab>"] = ":BufferLineCycleNext<CR>",
+		["<S-Tab>"] = ":BufferLineCyclePrev<CR>",
 	},
 	visual = {
 		["<C-s>"] = ":w!<CR>",
@@ -154,49 +151,81 @@ pea.plugin_opts = {
 	move_key_modifier = "C",
 
 	-- exclude these from numbers
-	numbers_exclude = { "toggleterm", "NvimTree", "dashboard" },
+	numbers_exclude = { "dashboard", "help", "toggleterm", "NvimTree" },
 
 	-- nvim-tree
-	nvim_tree_quit_on_open = 0,
+	nvim_tree_quit_on_open = 1,
 	nvim_tree_ignore = { ".git", ".DS_Store", ".node_modules", ".cache" },
-	nvim_tree_icons = {
-		icons = {
-			default = "",
-			symlink = "",
-			git = {
-				unstaged = "",
-				staged = "S",
-				unmerged = "",
-				renamed = "➜",
-				deleted = "",
-				untracked = "U",
-				ignored = "◌",
-			},
-			folder = {
-				default = "",
-				open = "",
-				empty = "",
-				empty_open = "",
-				symlink = "",
-			},
-		},
-	},
 }
 
 require("plugins.custom.cmp").setup()
 require("plugins.custom.null-ls").setup()
-require("numb").setup({})
+require("telescope").load_extension("projects")
 require("nvim-autopairs").setup({})
 require("project_nvim").setup({})
-require("telescope").load_extension("projects")
+require("numb").setup({})
+
+require("bufferline").setup({
+	options = {
+		enforce_regular_tabs = true,
+		separator_style = "thin",
+		offsets = {
+			{
+				filetype = "NvimTree",
+				text = "File Explorer",
+				text_align = "center",
+			},
+		},
+		custom_filter = function(buf_number)
+			if vim.bo[buf_number].filetype ~= "dashboard" then
+				return true
+			end
+		end,
+	},
+	highlights = {
+		separator = {
+			guifg = "#25b1f5",
+		},
+		separator_selected = {
+			guifg = "#25b1f5",
+		},
+		separator_visible = {
+			guifg = "#25b1f5",
+		},
+		modified = {
+			guifg = "#F8485E",
+		},
+		modified_selected = {
+			guifg = "#F8485E",
+		},
+		modified_visible = {
+			guifg = "#F8485E",
+		},
+	},
+})
+
+-- lazygit toggleterm
+local Terminal = require("toggleterm.terminal").Terminal
+local lazygit = Terminal:new({
+	cmd = "lazygit",
+	hidden = true,
+	direction = "float",
+	float_opts = {
+		border = "rounded",
+	},
+})
+
+_G.lazygit_toggle = function()
+	lazygit:toggle()
+end
 
 require("toggleterm").setup({
+	direction = "horizontal",
 	size = 15,
-	open_mapping = [[<C-t>]],
 	shade_terminals = false,
 	persist_size = true,
-	direction = "horizontal",
 	close_on_exit = true,
+	open_mapping = "<C-t>",
 })
 
 require("presence"):setup({
@@ -210,11 +239,16 @@ require("nvim-autopairs.completion.cmp").setup({
 })
 
 require("nvim-tree").setup({
-	ignore_ft_on_setup = { "dashboard" },
+	ignore_ft_on_setup = {
+		"dashboard",
+	},
 	auto_close = true,
 	open_on_tab = false,
 	open_on_setup = false,
 	update_focused_file = {
+		enable = true,
+	},
+	update_to_buf_dir = {
 		enable = true,
 	},
 	view = {
