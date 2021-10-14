@@ -55,7 +55,7 @@ M.load_auto_commands = function(commands)
 
 	for name, command in pairs(commands) do
 		autocmd.define_augroups({
-			name = command,
+			[name] = command,
 		})
 	end
 end
