@@ -136,8 +136,6 @@ ins_left({
 	},
 })
 
--- Insert mid section. You can make any number of sections in neovim :)
--- for lualine it's any number greater than 2
 ins_left({
 	function()
 		return "%="
@@ -145,15 +143,14 @@ ins_left({
 })
 
 ins_left({
-	function(msg)
-		msg = msg or "Inactive"
+	function()
+		local msg = "Inactive"
 		local buf_clients = vim.lsp.buf_get_clients()
-		if next(buf_clients) == nil then
-			if type(msg) == "boolean" or #msg == 0 then
-				return "Inactive"
-			end
+
+		if not next(buf_clients) then
 			return msg
 		end
+
 		local buf_ft = vim.bo.filetype
 		local buf_client_names = {}
 
@@ -164,17 +161,17 @@ ins_left({
 			end
 		end
 
-		-- 		-- add formatter
-		-- 		local formatters = require("lsp.null-ls.formatters")
-		-- 		local supported_formatters = formatters.list_supported_names(buf_ft)
-		-- 		vim.list_extend(buf_client_names, supported_formatters)
-		--
-		-- 		-- add linter
-		-- 		local linters = require("lsp.null-ls.linters")
-		-- 		local supported_linters = linters.list_supported_names(buf_ft)
-		-- 		vim.list_extend(buf_client_names, supported_linters)
-		--
-		-- 		return table.concat(buf_client_names, ", ")
+		local null_ls = require("plugins.custom.null-ls")
+
+		-- add formatter
+		local supported_formatters = null_ls.list_supported_formatters_names(buf_ft)
+		vim.list_extend(buf_client_names, supported_formatters)
+
+		-- add linter
+		local supported_linters = null_ls.list_supported_linters_names(buf_ft)
+		vim.list_extend(buf_client_names, supported_linters)
+
+		return table.concat(buf_client_names, ", ")
 	end,
 	icon = " LSP:",
 	color = { fg = colors.junglegreen, gui = "bold" },

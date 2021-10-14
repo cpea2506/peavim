@@ -42,9 +42,6 @@ pea.plugins = {
 	},
 	{
 		"jose-elias-alvarez/null-ls.nvim",
-		config = function()
-			require("lua.plugins.custom.null_ls").setup()
-		end,
 		requires = {
 			"nvim-lua/plenary.nvim",
 			"neovim/nvim-lspconfig",
@@ -135,7 +132,6 @@ pea.keymap = {
 		["<Tab>"] = ":BufferNext<CR>",
 		["<S-Tab>"] = ":BufferPrevious<CR>",
 		["<C-e>"] = ":BufferClose<CR>",
-		["<C-t>"] = ":FloatermToggle<CR>",
 		["<C-p>"] = ":Telescope find_files<CR>",
 	},
 	insert = {
@@ -158,7 +154,7 @@ pea.plugin_opts = {
 	move_key_modifier = "C",
 
 	-- exclude these from numbers
-	numbers_exclude = { "NvimTree", "dashboard" },
+	numbers_exclude = { "toggleterm", "NvimTree", "dashboard" },
 
 	-- nvim-tree
 	nvim_tree_quit_on_open = 0,
@@ -187,11 +183,21 @@ pea.plugin_opts = {
 	},
 }
 
-require("lua.plugins.custom.cmp").setup()
+require("plugins.custom.cmp").setup()
+require("plugins.custom.null-ls").setup()
 require("numb").setup({})
 require("nvim-autopairs").setup({})
 require("project_nvim").setup({})
 require("telescope").load_extension("projects")
+
+require("toggleterm").setup({
+	size = 15,
+	open_mapping = [[<C-t>]],
+	shade_terminals = false,
+	persist_size = true,
+	direction = "horizontal",
+	close_on_exit = true,
+})
 
 require("presence"):setup({
 	main_image = "file",
