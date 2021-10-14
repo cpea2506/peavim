@@ -68,7 +68,6 @@ M.setup = function()
 				"dashboard",
 				"set showtabline=0 | autocmd BufLeave <buffer> set showtabline=false",
 			},
-			{ "FileType", "dashboard", "nnoremap <silent> <buffer> q :q<CR>" },
 		},
 	})
 end
