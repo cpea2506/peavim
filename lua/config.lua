@@ -37,7 +37,7 @@ pea.plugins = {
 		requires = { "kyazdani42/nvim-web-devicons" },
 	},
 	{
-		"ChristianChiarulli/dashboard-nvim",
+		"glepnir/dashboard-nvim",
 		config = function()
 			require("plugins.custom.dashboard").setup()
 		end,
@@ -129,7 +129,7 @@ pea.keymap = {
 		["<C-s>"] = ":w<CR>",
 		["<C-b>"] = ":NvimTreeToggle<CR>",
 		["<C-p>"] = ":Telescope find_files<CR>",
-		["<C-w>"] = ":lua lazygit_toggle()<CR>",
+		["<C-g>"] = ":lua lazygit_toggle()<CR>",
 		["<C-e>"] = ":bdelete<CR>",
 		["<Tab>"] = ":BufferLineCycleNext<CR>",
 		["<S-Tab>"] = ":BufferLineCyclePrev<CR>",
@@ -168,7 +168,7 @@ require("numb").setup({})
 require("bufferline").setup({
 	options = {
 		enforce_regular_tabs = true,
-		separator_style = "thin",
+		separator_style = { "|", "|" },
 		offsets = {
 			{
 				filetype = "NvimTree",
@@ -177,7 +177,7 @@ require("bufferline").setup({
 			},
 		},
 		custom_filter = function(buf_number)
-			if vim.bo[buf_number].filetype ~= "dashboard" then
+			if vim.bo[buf_number].filetype == "dashboard" then
 				return true
 			end
 		end,
@@ -250,6 +250,7 @@ require("nvim-tree").setup({
 	},
 	update_to_buf_dir = {
 		enable = true,
+		update_cwd = true,
 	},
 	view = {
 		side = "right",
