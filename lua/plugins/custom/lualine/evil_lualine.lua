@@ -1,6 +1,3 @@
--- fixed undefined global `vim` error
-_G.vim = vim
-
 local lualine = require("lualine")
 
 local colors = {
