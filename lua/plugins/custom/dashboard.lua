@@ -50,26 +50,6 @@ M.setup = function()
 	M.config()
 
 	func.set_plugin_options(pea.builtin.dashboard)
-
-	autocmd.load_auto_commands({
-		dashboard = {
-			{
-				"BufWinEnter",
-				"dashboard",
-				"setlocal cursorline signcolumn=yes cursorcolumn number",
-			},
-			{
-				"FileType",
-				"dashboard",
-				"setlocal nocursorline noswapfile synmaxcol& signcolumn=no norelativenumber nocursorcolumn nospell  nolist  nonumber bufhidden=wipe colorcolumn= foldcolumn=0 matchpairs= ",
-			},
-			{
-				"FileType",
-				"dashboard",
-				"set showtabline=0 | autocmd BufLeave <buffer> set showtabline=false",
-			},
-		},
-	})
 end
 
 return M
