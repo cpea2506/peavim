@@ -33,7 +33,7 @@ pea.plugins = {
 		},
 	},
 	{
-		"akinsho/bufferline.nvim",
+		"romgrk/barbar.nvim",
 		requires = { "kyazdani42/nvim-web-devicons" },
 	},
 	{
@@ -130,9 +130,9 @@ pea.keymap = {
 		["<C-b>"] = ":NvimTreeToggle<CR>",
 		["<C-p>"] = ":Telescope find_files<CR>",
 		["<C-g>"] = ":lua lazygit_toggle()<CR>",
-		["<C-e>"] = ":bdelete<CR>",
-		["<Tab>"] = ":BufferLineCycleNext<CR>",
-		["<S-Tab>"] = ":BufferLineCyclePrev<CR>",
+		["<C-e>"] = ":BufferClose<CR>",
+		["<Tab>"] = ":BufferNext<CR>",
+		["<S-Tab>"] = ":BufferPrevious<CR>",
 	},
 	visual = {
 		["<C-s>"] = ":w!<CR>",
@@ -156,6 +156,19 @@ pea.plugin_opts = {
 	-- nvim-tree
 	nvim_tree_quit_on_open = 1,
 	nvim_tree_ignore = { ".git", ".DS_Store", ".node_modules", ".cache" },
+	bufferline = {
+		animation = true,
+		auto_hide = true,
+		tabpages = true,
+		closable = true,
+		clickable = true,
+		icons = true,
+		icon_separator_active = "▎",
+		icon_separator_inactive = "▎",
+		icon_close_tab = "",
+		icon_close_tab_modified = "●",
+		icon_pinned = "車",
+	},
 }
 
 require("plugins.custom.cmp").setup()
@@ -164,45 +177,6 @@ require("telescope").load_extension("projects")
 require("nvim-autopairs").setup({})
 require("project_nvim").setup({})
 require("numb").setup({})
-
-require("bufferline").setup({
-	options = {
-		enforce_regular_tabs = true,
-		separator_style = { "|", "|" },
-		offsets = {
-			{
-				filetype = "NvimTree",
-				text = "File Explorer",
-				text_align = "center",
-			},
-		},
-		custom_filter = function(buf_number)
-			if vim.bo[buf_number].filetype == "dashboard" then
-				return true
-			end
-		end,
-	},
-	highlights = {
-		separator = {
-			guifg = "#25b1f5",
-		},
-		separator_selected = {
-			guifg = "#25b1f5",
-		},
-		separator_visible = {
-			guifg = "#25b1f5",
-		},
-		modified = {
-			guifg = "#F8485E",
-		},
-		modified_selected = {
-			guifg = "#F8485E",
-		},
-		modified_visible = {
-			guifg = "#F8485E",
-		},
-	},
-})
 
 -- lazygit toggleterm
 local Terminal = require("toggleterm.terminal").Terminal
