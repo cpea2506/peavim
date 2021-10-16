@@ -28,8 +28,6 @@ M.config = function()
 		name .. " loaded " .. num_plugins_loaded .. " plugins ",
 		"",
 		"Let me show you what is the true text editor!",
-		"",
-		"( ͡° ͜ʖ ͡°)",
 	}
 
 	pea.builtin.dashboard = {
@@ -69,6 +67,20 @@ M.setup = function()
 	M.config()
 
 	func.set_plugin_options(pea.builtin.dashboard)
+	require("autocmd").define_augroups({
+		dashboard = {
+			{
+				"FileType",
+				"dashboard",
+				"set showtabline=0",
+			},
+			{
+				"WinLeave",
+				"<buffer>",
+				"set showtabline=2",
+			},
+		},
+	})
 end
 
 return M
