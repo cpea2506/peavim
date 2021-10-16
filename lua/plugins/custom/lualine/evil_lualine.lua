@@ -1,3 +1,5 @@
+local M = {}
+
 local lualine = require("lualine")
 
 local colors = {
@@ -221,4 +223,8 @@ ins_right({
 })
 
 -- Now don't forget to initialize lualine
-lualine.setup(config)
+M.setup = function()
+	lualine.setup(config)
+end
+
+return M
