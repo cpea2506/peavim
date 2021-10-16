@@ -1,5 +1,24 @@
 local M = {}
 
+local align_center = function(lines, alignment)
+	local output = {}
+	local max_len = 0
+
+	for _, line in ipairs(lines) do
+		local line_len = #line
+		if line_len > max_len then
+			max_len = line_len
+		end
+	end
+
+	for _, line in ipairs(lines) do
+		local padding = string.rep(" ", (math.max(0, max_len) - line:len()) * alignment)
+		table.insert(output, padding .. line)
+	end
+
+	return output
+end
+
 M.config = function()
 	local config_path = "~/.config/nvim/lua/config.lua"
 	local packer_path = "~/.local/share/nvim/site/pack/packer/start"
@@ -10,7 +29,7 @@ M.config = function()
 		"",
 		"Let me show you what is the true text editor!",
 		"",
-		" 	( ͡° ͜ʖ ͡°)",
+		"( ͡° ͜ʖ ͡°)",
 	}
 
 	pea.builtin.dashboard = {
@@ -42,7 +61,7 @@ M.config = function()
 				command = ":e " .. config_path,
 			},
 		},
-		dashboard_custom_footer = func.align_center(footer, 0.5),
+		dashboard_custom_footer = align_center(footer, 0.5),
 	}
 end
 
