@@ -10,7 +10,7 @@ pea.plugins = {
 	{ "nvim-treesitter/nvim-treesitter" },
 	{ "windwp/nvim-ts-autotag" },
 	{ "ahmedkhalf/project.nvim" },
-	{ "kabouzeid/nvim-lspinstall" },
+	{ "williamboman/nvim-lsp-installer" },
 	{ "neovim/nvim-lspconfig" },
 	{ "onsails/lspkind-nvim" },
 	{ "windwp/nvim-autopairs" },
@@ -65,44 +65,37 @@ pea.plugins = {
 	},
 	{
 		"shadmansaleh/lualine.nvim",
-		requires = {
-			"kyazdani42/nvim-web-devicons",
-			opt = true,
-		},
+		requires = { "kyazdani42/nvim-web-devicons" },
 	},
 }
 
 -- vim setup
 pea.vim_opts = {
-	updatetime = 300,
-	cmdheight = 2,
-	colorcolumn = "9999",
-	foldmethod = "manual",
-	guifont = "MesloLGS NF:h12",
 	hidden = true,
-	completeopt = { "menuone", "noselect" },
-	tabstop = 4,
-	shiftwidth = 4,
 	hlsearch = true,
+	swapfile = false,
 	smartcase = true,
 	smartindent = true,
 	autoindent = true,
-	clipboard = "unnamedplus",
 	undofile = true,
-	numberwidth = 2,
-	signcolumn = "yes",
-	scrolloff = 8,
-	sidescrolloff = 8,
 	showmode = false,
+	tabstop = 4,
+	scrolloff = 8,
+	cmdheight = 2,
+	shiftwidth = 4,
+	numberwidth = 2,
+	updatetime = 250,
+	sidescrolloff = 8,
+	signcolumn = "yes",
+	fillchars = "eob: ",
+	colorcolumn = "9999",
+	foldmethod = "manual",
+	clipboard = "unnamedplus",
+	guifont = "MesloLGS NF:h12",
+	completeopt = { "menuone", "noselect" },
 }
 
--- neovide setup
-pea.neovide_opts = {
-	neovide_input_use_logo = true,
-	neovide_refresh_rate = 120,
-	neovide_cursor_vfx_mode = "sonicboom",
-	neovide_cursor_animation_length = 0.12,
-}
+-- pea.transparent_window = false
 
 pea.builtin.null_ls.sources = {
 	formatting = {
@@ -139,14 +132,14 @@ pea.keymap = {
 	},
 }
 
+-- plugins setup
 pea.custom_plugins = {
 	"dashboard",
 	"lsp.init",
-	"lualine.evil_lualine",
 	"lsp.cmp",
 	"lsp.null-ls",
+	"lualine.evil_lualine",
 }
--- plugins setup
 
 require("nvim-autopairs").setup({})
 require("project_nvim").setup({})
@@ -154,7 +147,13 @@ require("numb").setup({})
 require("telescope").load_extension("projects")
 
 pea.plugin_opts = {
+	-- neovide
+	neovide_input_use_logo = true,
+	neovide_refresh_rate = 120,
+	neovide_cursor_vfx_mode = "sonicboom",
+	neovide_cursor_animation_length = 0.12,
 	one_monokai_term_italic = 1,
+
 	-- vim move
 	move_key_modifier = "C",
 
@@ -198,7 +197,7 @@ end
 require("toggleterm").setup({
 	direction = "horizontal",
 	size = 15,
-	shade_terminals = false,
+	shade_terminals = true,
 	persist_size = true,
 	close_on_exit = true,
 	open_mapping = "<C-t>",
@@ -223,10 +222,10 @@ require("nvim-tree").setup({
 	open_on_setup = false,
 	update_focused_file = {
 		enable = true,
+		update_cwd = true,
 	},
 	update_to_buf_dir = {
 		enable = true,
-		update_cwd = true,
 	},
 	view = {
 		side = "right",

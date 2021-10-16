@@ -1,29 +1,34 @@
 local M = {}
-local lsp_install = require("lspinstall")
 
-local function setup_servers()
-	lsp_install.setup({})
+M.setup = function()
+	local lsp_installer = require("nvim-lsp-installer")
 
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 	capabilities.textDocument.completion.completionItem.snippetSupport = true
 	capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-	local servers = lsp_install.installed_servers()
-	for _, server in pairs(servers) do
-		require("lspconfig")[server].setup({
-			capabilities = capabilities,
-		})
-	end
-end
+	lsp_installer.on_server_ready(function(server)
+		local opts = { capabilities = capabilities }
 
-M.setup = function()
-	setup_servers()
+		server:setup(opts)
+		vim.cmd("do User LspAttachBuffers")
+	end)
 
-	-- Automatically reload after `:LspInstall <server>`
-	lsp_install.post_install_hook = function()
-		setup_servers()
-		vim.cmd([[bufdo e]])
-	end
+	lsp_installer.settings({
+		ui = {
+			icons = {
+				server_installed = "✅",
+				server_pending = "⏳",
+				server_uninstalled = "💀",
+			},
+			keymaps = {
+				toggle_server_expand = "<CR>",
+				install_server = "i",
+				update_server = "u",
+				uninstall_server = "X",
+			},
+		},
+	})
 end
 
 return M
