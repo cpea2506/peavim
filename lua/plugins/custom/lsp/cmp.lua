@@ -101,7 +101,7 @@ M.config = function()
 	pea.builtin.cmp = {
 		confirm_opts = {
 			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
+			select = false,
 		},
 		snippet = {
 			expand = function(args)
