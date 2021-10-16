@@ -1,3 +1,4 @@
+local M = {}
 local lsp_install = require("lspinstall")
 
 local function setup_servers()
@@ -15,10 +16,14 @@ local function setup_servers()
 	end
 end
 
-setup_servers()
-
--- Automatically reload after `:LspInstall <server>`
-lsp_install.post_install_hook = function()
+M.setup = function()
 	setup_servers()
-	vim.cmd([[bufdo e]])
+
+	-- Automatically reload after `:LspInstall <server>`
+	lsp_install.post_install_hook = function()
+		setup_servers()
+		vim.cmd([[bufdo e]])
+	end
 end
+
+return M
