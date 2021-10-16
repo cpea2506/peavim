@@ -74,7 +74,6 @@ pea.plugins = {
 
 -- vim setup
 pea.vim_opts = {
-	termguicolors = true,
 	updatetime = 300,
 	cmdheight = 2,
 	colorcolumn = "9999",
@@ -99,9 +98,10 @@ pea.vim_opts = {
 
 -- neovide setup
 pea.neovide_opts = {
-	neovide_transparency = 0.85,
+	neovide_input_use_logo = true,
+	neovide_refresh_rate = 120,
 	neovide_cursor_vfx_mode = "sonicboom",
-	neovide_cursor_animation_length = 0.1,
+	neovide_cursor_animation_length = 0.12,
 }
 
 pea.builtin.null_ls.sources = {
@@ -139,14 +139,22 @@ pea.keymap = {
 	},
 }
 
--- external plugins setup
 pea.custom_plugins = {
-	"lualine/evil_lualine",
-	"lsp",
+	"dashboard",
+	"lsp.init",
+	"lualine.evil_lualine",
+	"lsp.cmp",
+	"lsp.null-ls",
 }
-
 -- plugins setup
+
+require("nvim-autopairs").setup({})
+require("project_nvim").setup({})
+require("numb").setup({})
+require("telescope").load_extension("projects")
+
 pea.plugin_opts = {
+	one_monokai_term_italic = 1,
 	-- vim move
 	move_key_modifier = "C",
 
@@ -156,6 +164,8 @@ pea.plugin_opts = {
 	-- nvim-tree
 	nvim_tree_quit_on_open = 1,
 	nvim_tree_ignore = { ".git", ".DS_Store", ".node_modules", ".cache" },
+
+	-- bufferline
 	bufferline = {
 		animation = true,
 		tabpages = true,
@@ -169,13 +179,6 @@ pea.plugin_opts = {
 		icon_pinned = "車",
 	},
 }
-
-require("plugins.custom.cmp").setup()
-require("plugins.custom.null-ls").setup()
-require("telescope").load_extension("projects")
-require("nvim-autopairs").setup({})
-require("project_nvim").setup({})
-require("numb").setup({})
 
 -- lazygit toggleterm
 local Terminal = require("toggleterm.terminal").Terminal
