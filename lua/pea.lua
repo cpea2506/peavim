@@ -7,7 +7,6 @@ local M = {
 	custom_plugins = {},
 	vim_opts = {},
 	plugin_opts = {},
-	neovide_opts = {},
 	plugins = {},
 	autocmd = {},
 
