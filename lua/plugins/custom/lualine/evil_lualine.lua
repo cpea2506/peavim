@@ -3,7 +3,7 @@ local M = {}
 local lualine = require("lualine")
 
 local colors = {
-	bg = "#282c34",
+	bg = "#212121",
 	fg = "#eceef0",
 	yellow = "#f5e960",
 	cyan = "#64fcda",
@@ -40,7 +40,7 @@ local config = {
 			normal = { c = { fg = colors.fg, bg = colors.bg } },
 			inactive = { c = { fg = colors.fg, bg = colors.bg } },
 		},
-		disabled_filetypes = { "nvim_tree" },
+		disabled_filetypes = { "NvimTree", "dashboard" },
 	},
 	sections = {
 		lualine_a = {},
@@ -160,7 +160,7 @@ ins_left({
 			end
 		end
 
-		local null_ls = require("plugins.custom.null-ls")
+		local null_ls = require("plugins.custom.lsp.null-ls")
 
 		-- add formatter
 		local supported_formatters = null_ls.list_supported_formatters_names(buf_ft)
@@ -193,7 +193,6 @@ ins_right({
 
 ins_right({
 	"branch",
-	icon = "",
 	color = { fg = colors.violet, gui = "bold" },
 })
 
