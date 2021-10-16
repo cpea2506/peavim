@@ -158,7 +158,6 @@ pea.plugin_opts = {
 	nvim_tree_ignore = { ".git", ".DS_Store", ".node_modules", ".cache" },
 	bufferline = {
 		animation = true,
-		auto_hide = true,
 		tabpages = true,
 		closable = true,
 		clickable = true,
