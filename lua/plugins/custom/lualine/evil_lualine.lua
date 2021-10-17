@@ -40,7 +40,7 @@ local config = {
 			normal = { c = { fg = colors.fg, bg = colors.bg } },
 			inactive = { c = { fg = colors.fg, bg = colors.bg } },
 		},
-		disabled_filetypes = { "NvimTree", "dashboard" },
+		disabled_filetypes = { "NvimTree", "dashboard", "toggleterm" },
 	},
 	sections = {
 		lualine_a = {},
