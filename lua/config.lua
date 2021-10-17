@@ -79,9 +79,10 @@ pea.vim_opts = {
 	autoindent = true,
 	undofile = true,
 	showmode = false,
+	showcmd = false,
 	tabstop = 4,
 	scrolloff = 8,
-	cmdheight = 2,
+	cmdheight = 1,
 	shiftwidth = 4,
 	numberwidth = 2,
 	updatetime = 250,
@@ -92,7 +93,6 @@ pea.vim_opts = {
 	foldmethod = "manual",
 	clipboard = "unnamedplus",
 	guifont = "MesloLGS NF:h12",
-	completeopt = { "menuone", "noselect" },
 }
 
 pea.builtin.null_ls.sources = {
@@ -145,9 +145,6 @@ require("telescope").load_extension("projects")
 
 pea.plugin_opts = {
 	-- neovide
-	neovide_input_use_logo = true,
-	neovide_refresh_rate = 120,
-	one_monokai_term_italic = 1,
 	neovide_cursor_animation_length = 0.12,
 	neovide_cursor_vfx_mode = "sonicboom",
 
