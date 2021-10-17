@@ -92,7 +92,8 @@ pea.vim_opts = {
 	colorcolumn = "9999",
 	foldmethod = "manual",
 	clipboard = "unnamedplus",
-	guifont = "MesloLGS NF:h12",
+	guifont = "MesloLGS NF:h11",
+	completeopt = "menu, menuone, noselect",
 }
 
 pea.builtin.null_ls.sources = {
