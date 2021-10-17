@@ -93,7 +93,7 @@ pea.vim_opts = {
 	foldmethod = "manual",
 	clipboard = "unnamedplus",
 	guifont = "MesloLGS NF:h11",
-	completeopt = "menu, menuone, noselect",
+	completeopt = { "menu", "menuone", "noselect" },
 }
 
 pea.builtin.null_ls.sources = {
