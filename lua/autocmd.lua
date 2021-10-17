@@ -10,6 +10,13 @@ local default = {
 		{ "ColorScheme", "*", "hi TelescopeBorder ctermbg=none guibg=none" },
 		{ "ColorScheme", "*", "hi NvimTreeNormal ctermbg=none guibg=none" },
 	},
+	neovide = {
+		{
+			"ColorScheme",
+			"*",
+			"hi Normal guibg=#282C34 guifg=#ABB2BF",
+		},
+	},
 	yank_highlight = {
 		{
 			"TextYankPost",
@@ -62,8 +69,11 @@ end
 
 M.setup = function()
 	if pea.transparent_window then
-		M.define_augroups({ transparent_window = default.transparent_window })
-		vim.cmd("let &fcs='eob: '")
+		if vim.g.neovide then
+			M.define_augroups({ neovide = default.neovide })
+		else
+			M.define_augroups({ transparent_window = default.transparent_window })
+		end
 	end
 
 	if pea.yank_highlight then
