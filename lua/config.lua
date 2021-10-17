@@ -95,8 +95,6 @@ pea.vim_opts = {
 	completeopt = { "menuone", "noselect" },
 }
 
--- pea.transparent_window = false
-
 pea.builtin.null_ls.sources = {
 	formatting = {
 		{
@@ -150,9 +148,9 @@ pea.plugin_opts = {
 	-- neovide
 	neovide_input_use_logo = true,
 	neovide_refresh_rate = 120,
-	neovide_cursor_vfx_mode = "sonicboom",
-	neovide_cursor_animation_length = 0.12,
 	one_monokai_term_italic = 1,
+	neovide_cursor_animation_length = 0.12,
+	neovide_cursor_vfx_mode = "sonicboom",
 
 	-- vim move
 	move_key_modifier = "C",
@@ -166,16 +164,16 @@ pea.plugin_opts = {
 
 	-- bufferline
 	bufferline = {
-		animation = true,
+		icons = true,
 		tabpages = true,
 		closable = true,
+		animation = true,
 		clickable = true,
-		icons = true,
+		icon_pinned = "車",
+		icon_close_tab = "",
 		icon_separator_active = "▎",
 		icon_separator_inactive = "▎",
-		icon_close_tab = "",
 		icon_close_tab_modified = "●",
-		icon_pinned = "車",
 	},
 }
 
@@ -183,7 +181,6 @@ pea.plugin_opts = {
 local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({
 	cmd = "lazygit",
-	hidden = true,
 	direction = "float",
 	float_opts = {
 		border = "rounded",
@@ -195,12 +192,12 @@ _G.lazygit_toggle = function()
 end
 
 require("toggleterm").setup({
-	direction = "horizontal",
 	size = 15,
-	shade_terminals = true,
 	persist_size = true,
 	close_on_exit = true,
+	shade_terminals = false,
 	open_mapping = "<C-t>",
+	direction = "horizontal",
 })
 
 require("presence"):setup({
