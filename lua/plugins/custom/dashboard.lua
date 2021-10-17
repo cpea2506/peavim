@@ -67,20 +67,6 @@ M.setup = function()
 	M.config()
 
 	func.set_plugin_options(pea.builtin.dashboard)
-	require("autocmd").define_augroups({
-		dashboard = {
-			{
-				"FileType",
-				"dashboard",
-				"set showtabline=0",
-			},
-			{
-				"WinLeave",
-				"<buffer>",
-				"set showtabline=2",
-			},
-		},
-	})
 end
 
 return M
