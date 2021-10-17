@@ -44,7 +44,6 @@ M.config = function()
 		local snippet = node.parent.snippet
 		local exit_node = snippet.insert_nodes[0]
 
-		-- exit early if we're past the exit node
 		if exit_node then
 			local exit_pos_end = exit_node.mark:pos_end()
 			if (pos[1] > exit_pos_end[1]) or (pos[1] == exit_pos_end[1] and pos[2] > exit_pos_end[2]) then
