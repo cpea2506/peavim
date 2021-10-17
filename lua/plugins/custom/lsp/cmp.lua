@@ -121,7 +121,7 @@ M.config = function()
 						end
 						return vim.tbl_keys(bufs)
 					end,
-					keyword_pattern = [[\k+\]],
+					keyword_pattern = [[\k\+]],
 				},
 			},
 			{ name = "nvim_lua" },
@@ -190,6 +190,10 @@ M.config = function()
 					fallback()
 				end
 			end),
+			["<C-c>"] = function(fallback)
+				require("cmp").close()
+				fallback()
+			end,
 		},
 	}
 end
