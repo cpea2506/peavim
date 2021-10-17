@@ -104,7 +104,6 @@ pea.builtin.null_ls.sources = {
 			},
 		},
 		{ exe = "black" },
-		{ exe = "rustfmt" },
 		{ exe = "stylua" },
 	},
 	diagnostics = {
