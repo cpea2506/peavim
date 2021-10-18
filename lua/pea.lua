@@ -23,6 +23,9 @@ local M = {
 		null_ls = {
 			sources = {},
 		},
+		lsp = {
+			disabled_fmt = {},
+		},
 	},
 }
 
