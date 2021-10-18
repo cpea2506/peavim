@@ -61,30 +61,7 @@ M.setup = function()
 		sources = config_source(pea.builtin.null_ls.sources),
 	})
 
-	null_ls.register({
-		sources = config_source(pea.builtin.null_ls.sources),
-	})
-
-	-- format on save
-	local on_attach = function(client)
-		if pea.format_on_save then
-			if client.resolved_capabilities.document_formatting then
-				autocmd.define_augroups({
-					format_on_save = {
-						{
-							"BufWritePre",
-							"*",
-							"lua vim.lsp.buf.formatting_sync()",
-						},
-					},
-				})
-			end
-		end
-	end
-
-	require("lspconfig")["null-ls"].setup({
-		on_attach = on_attach,
-	})
+	require("lspconfig")["null-ls"].setup({})
 end
 
 return M
