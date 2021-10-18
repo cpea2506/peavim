@@ -148,6 +148,8 @@ M.config = function()
 			}),
 		},
 		mapping = {
+			["<C-k>"] = cmp.mapping.scroll_docs(-4),
+			["<C-j>"] = cmp.mapping.scroll_docs(4),
 			["<Tab>"] = cmp.mapping(function()
 				if cmp.visible() then
 					cmp.select_next_item()
