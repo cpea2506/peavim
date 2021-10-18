@@ -1,6 +1,13 @@
 local M = {}
 
 local default = {
+	format_on_save = {
+		{
+			"BufWritePre",
+			"*",
+			"lua vim.lsp.buf.formatting_sync()",
+		},
+	},
 	transparent_window = {
 		{ "ColorScheme", "*", "hi Normal ctermbg=none guibg=none" },
 		{ "ColorScheme", "*", "hi clear SignColumn" },
@@ -68,6 +75,10 @@ M.load_auto_commands = function(commands)
 end
 
 M.setup = function()
+	if pea.format_on_save then
+		autocmd.define_augroups({ format_on_save = default.format_on_save })
+	end
+
 	if pea.transparent_window then
 		if vim.g.neovide then
 			M.define_augroups({ neovide = default.neovide })
