@@ -20,7 +20,7 @@ local get_servers_and_methods = function()
 		end
 	end
 
-	local null_ls = require("plugins.custom.lsp.null-ls")
+	local null_ls = require("plugins.custom.lsp.null_ls")
 
 	-- add formatter
 	local supported_formatters = null_ls.list_supported_formatters_names(buf_ft)
