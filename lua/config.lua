@@ -1,4 +1,6 @@
 pea.plugins = {
+	{ "RishabhRD/popfix" },
+	{ "RishabhRD/nvim-lsputils" },
 	{ "andweeb/presence.nvim" },
 	{ "akinsho/toggleterm.nvim" },
 	{ "wbthomason/packer.nvim" },
@@ -17,6 +19,7 @@ pea.plugins = {
 	{ "p00f/nvim-ts-rainbow" },
 	{ "nacro90/numb.nvim" },
 	{ "myusuf3/numbers.vim" },
+	{ "simrat39/rust-tools.nvim" },
 	{
 		"hrsh7th/nvim-cmp",
 		requires = {
@@ -104,6 +107,7 @@ pea.builtin.null_ls.sources = {
 				"css",
 			},
 		},
+		{ exe = "rustfmt" },
 		{ exe = "black" },
 		{ exe = "stylua" },
 	},
@@ -114,16 +118,29 @@ pea.builtin.null_ls.sources = {
 	},
 }
 
+-- some language servers has fomatter on default
+-- but it seem didn't work sometimes
+-- disabled to use null-ls instead
+pea.builtin.lsp.disable_fmt = {
+	"rust_analyzer",
+}
+
 -- set keymap
 pea.keymap = {
 	normal = {
 		["<C-s>"] = ":w<CR>",
+		["<Tab>"] = ":BufferNext<CR>",
+		["<C-e>"] = ":BufferClose<CR>",
 		["<C-b>"] = ":NvimTreeToggle<CR>",
+		["<S-Tab>"] = ":BufferPrevious<CR>",
 		["<C-p>"] = ":Telescope find_files<CR>",
 		["<C-g>"] = ":lua lazygit_toggle()<CR>",
-		["<C-e>"] = ":BufferClose<CR>",
-		["<Tab>"] = ":BufferNext<CR>",
-		["<S-Tab>"] = ":BufferPrevious<CR>",
+		["gD"] = ":lua vim.lsp.buf.definition()<CR>",
+		["gr"] = ":lua vim.lsp.buf.references()<CR>",
+		["gd"] = ":lua vim.lsp.buf.declaration()<CR>",
+		["<leader>rn"] = ":lua vim.lsp.buf.rename()<CR>",
+		["<leader>ca"] = ":lua vim.lsp.buf.code_action()<CR>",
+		["<leader>f"] = ":lua vim.lsp.buf.formatting_sync()<CR>",
 	},
 	visual = {
 		["<C-s>"] = ":w!<CR>",
@@ -134,8 +151,8 @@ pea.keymap = {
 pea.custom_plugins = {
 	"dashboard",
 	"lsp.init",
+	"lsp.null_ls",
 	"lsp.cmp",
-	"lsp.null-ls",
 	"lualine.evil_lualine",
 }
 
@@ -145,6 +162,8 @@ require("numb").setup({})
 require("telescope").load_extension("projects")
 
 pea.plugin_opts = {
+	mapleader = " ",
+
 	-- neovide
 	neovide_cursor_animation_length = 0.12,
 	neovide_cursor_vfx_mode = "sonicboom",
