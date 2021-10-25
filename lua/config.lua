@@ -26,12 +26,10 @@ pea.plugins = {
 			{ "L3MON4D3/LuaSnip" },
 			{ "saadparwaiz1/cmp_luasnip" },
 			{ "Saecki/crates.nvim" },
-			{ "hrsh7th/cmp-buffer" },
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "hrsh7th/cmp-path" },
 			{ "hrsh7th/cmp-nvim-lua" },
 			{ "hrsh7th/cmp-calc" },
-			{ "hrsh7th/cmp-emoji" },
 			{ "ray-x/cmp-treesitter" },
 		},
 	},
@@ -67,7 +65,7 @@ pea.plugins = {
 		requires = { "kyazdani42/nvim-web-devicons" },
 	},
 	{
-		"shadmansaleh/lualine.nvim",
+		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons" },
 	},
 }
@@ -83,12 +81,13 @@ pea.vim_opts = {
 	undofile = true,
 	showmode = false,
 	showcmd = false,
+	title = true,
 	tabstop = 4,
 	scrolloff = 8,
 	cmdheight = 1,
 	shiftwidth = 4,
 	numberwidth = 2,
-	updatetime = 250,
+	updatetime = 300,
 	sidescrolloff = 8,
 	signcolumn = "yes",
 	fillchars = "eob: ",
@@ -96,17 +95,12 @@ pea.vim_opts = {
 	foldmethod = "manual",
 	clipboard = "unnamedplus",
 	guifont = "MesloLGS NF:h11",
-	completeopt = { "menu", "menuone", "noselect" },
+	completeopt = { "menuone", "noselect" },
 }
 
 pea.builtin.null_ls.sources = {
 	formatting = {
-		{
-			exe = "prettierd",
-			filetypes = {
-				"css",
-			},
-		},
+		{ exe = "prettierd" },
 		{ exe = "rustfmt" },
 		{ exe = "black" },
 		{ exe = "stylua" },
@@ -123,6 +117,8 @@ pea.builtin.null_ls.sources = {
 -- disabled to use null-ls instead
 pea.builtin.lsp.disable_fmt = {
 	"rust_analyzer",
+	"tsserver",
+	"jsonls",
 }
 
 -- set keymap
@@ -156,7 +152,6 @@ pea.custom_plugins = {
 	"lualine.evil_lualine",
 }
 
-require("nvim-autopairs").setup({})
 require("project_nvim").setup({})
 require("numb").setup({})
 require("telescope").load_extension("projects")
@@ -220,10 +215,13 @@ require("presence"):setup({
 	main_image = "file",
 })
 
-require("nvim-autopairs.completion.cmp").setup({
+require("nvim-autopairs").setup({
 	map_cr = true,
-	map_complete = true,
-	auto_select = true,
+	enable_check_bracket_line = true,
+	ignored_next_char = "[%w%.]",
+	fast_wrap = {
+		map = "<C-w>",
+	},
 })
 
 require("nvim-tree").setup({
@@ -275,8 +273,12 @@ require("nvim-treesitter.configs").setup({
 			"xml",
 		},
 	},
+	indent = {
+		enable = true,
+	},
 	rainbow = {
 		enable = true,
+		extended_mode = true,
 		colors = {
 			"#FED701",
 			"#E492E1",

@@ -110,23 +110,9 @@ M.config = function()
 		sources = {
 			{ name = "nvim_lsp" },
 			{ name = "luasnip" },
-			{
-				name = "buffer",
-				opts = {
-					get_bufnrs = function()
-						local bufs = {}
-						for _, win in ipairs(vim.api.nvim_list_wins()) do
-							bufs[vim.api.nvim_win_get_buf(win)] = true
-						end
-						return vim.tbl_keys(bufs)
-					end,
-					keyword_pattern = [[\k\+]],
-				},
-			},
 			{ name = "nvim_lua" },
 			{ name = "path" },
 			{ name = "calc" },
-			{ name = "emoji" },
 			{ name = "treesitter" },
 			{ name = "crates" },
 		},
@@ -138,12 +124,10 @@ M.config = function()
 				with_text = true,
 				menu = {
 					crates = "(Crates)",
-					emoji = "(Emoji)",
 					calc = "(Calc)",
 					nvim_lsp = "(LSP)",
 					path = "(Path)",
 					luasnip = "(Snippet)",
-					buffer = "(Buffer)",
 				},
 			}),
 		},
