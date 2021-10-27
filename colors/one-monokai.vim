@@ -145,7 +145,7 @@ call s:h("PmenuThumb",    { "fg": s:lightblack, "bg": s:grey })
 " Generic Syntax Highlighting
 " ---------------------------
 
-call s:h("Constant",      { "fg": s:aqua })
+call s:h("Constant",      { "fg": s:purple })
 call s:h("Number",        { "fg": s:purple })
 call s:h("Float",         { "fg": s:purple })
 call s:h("Boolean",       { "fg": s:aqua })
@@ -153,7 +153,7 @@ call s:h("Character",     { "fg": s:yellow })
 call s:h("String",        { "fg": s:yellow })
 
 call s:h("Type",          { "fg": s:aqua })
-call s:h("Structure",     { "fg": s:green })
+call s:h("Structure",     { "fg": s:aqua })
 call s:h("StorageClass",  { "fg": s:aqua })
 call s:h("Typedef",       { "fg": s:aqua })
     
