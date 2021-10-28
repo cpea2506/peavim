@@ -35,12 +35,12 @@ local default = {
 		{
 			"BufWritePost",
 			"config.lua",
-			"PackerCompile",
+			"PackerInstall",
 		},
 		{
 			"BufWritePost",
 			"config.lua",
-			"PackerInstall",
+			"PackerCompile",
 		},
 	},
 }

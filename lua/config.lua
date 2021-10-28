@@ -172,19 +172,25 @@ pea.plugin_opts = {
 	-- nvim-tree
 	nvim_tree_quit_on_open = 1,
 	nvim_tree_ignore = { ".git", ".DS_Store", ".node_modules", ".cache" },
+}
 
-	-- bufferline
-	bufferline = {
-		icons = true,
-		tabpages = true,
-		closable = true,
-		animation = true,
-		clickable = true,
-		icon_pinned = "車",
-		icon_close_tab = "",
-		icon_separator_active = "▎",
-		icon_separator_inactive = "▎",
-		icon_close_tab_modified = "●",
+pea.autocmd = {
+	nvim_tree = {
+		{
+			"BufWinEnter",
+			"NvimTree",
+			":hi NvimTreeFolderIcon guifg=#e5c07b",
+		},
+		{
+			"BufWinEnter",
+			"NvimTree",
+			":hi NvimTreeGitStaged guifg=#98c379",
+		},
+		{
+			"BufWinEnter",
+			"NvimTree",
+			":hi NvimTreeGitDirty guifg=#e06c75",
+		},
 	},
 }
 
@@ -225,25 +231,19 @@ require("nvim-autopairs").setup({
 })
 
 require("nvim-tree").setup({
-	ignore_ft_on_setup = {
-		"dashboard",
-	},
 	auto_close = true,
-	open_on_tab = false,
-	open_on_setup = false,
+	hijack_cursor = true,
+	update_cwd = true,
 	update_focused_file = {
 		enable = true,
 		update_cwd = true,
 	},
 	update_to_buf_dir = {
-		enable = true,
+		auto_open = false,
 	},
 	view = {
 		side = "right",
 		auto_resize = true,
-		mappings = {
-			custom_only = false,
-		},
 	},
 })
 
@@ -284,8 +284,8 @@ require("nvim-treesitter.configs").setup({
 			"#87CEFA",
 			"#FED701",
 			"#FE938C",
-			"#A3F7B5",
 			"#5A81AC",
+			"#A3F7B5",
 			"#D03770",
 		},
 	},
