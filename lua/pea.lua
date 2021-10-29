@@ -1,5 +1,5 @@
 local M = {
-	theme = "one-monokai",
+	theme = "one_monokai",
 	transparent_window = true,
 	format_on_save = true,
 	yank_highlight = true,

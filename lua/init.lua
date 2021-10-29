@@ -1,7 +1,7 @@
 _G.pea = require("pea")
 _G.func = require("func")
-require("config")
 
+require("config")
 require("plugins.init")
 require("autocmd").setup()
 require("key_mapping").setup()

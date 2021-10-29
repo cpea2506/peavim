@@ -9,20 +9,14 @@ local default = {
 		},
 	},
 	transparent_window = {
-		{ "ColorScheme", "*", "hi Normal ctermbg=none guibg=none" },
-		{ "ColorScheme", "*", "hi clear SignColumn" },
-		{ "ColorScheme", "*", "hi clear LineNr" },
-		{ "ColorScheme", "*", "hi NormalNC ctermbg=none guibg=none" },
-		{ "ColorScheme", "*", "hi MsgArea ctermbg=none guibg=none" },
-		{ "ColorScheme", "*", "hi TelescopeBorder ctermbg=none guibg=none" },
-		{ "ColorScheme", "*", "hi NvimTreeNormal ctermbg=none guibg=none" },
-	},
-	neovide = {
-		{
-			"ColorScheme",
-			"*",
-			"hi Normal guibg=#282C34 guifg=#ABB2BF",
-		},
+		{ "ColorScheme", "*", "hi Normal guibg=none" },
+		{ "ColorScheme", "*", "hi SignColumn guibg=none" },
+		{ "ColorScheme", "*", "hi  LineNr guibg=none" },
+		{ "ColorScheme", "*", "hi CursorLineNr guibg=none" },
+		{ "ColorScheme", "*", "hi NormalNC guibg=none" },
+		{ "ColorScheme", "*", "hi MsgArea guibg=none" },
+		{ "ColorScheme", "*", "hi TelescopeBorder guibg=none" },
+		{ "ColorScheme", "*", "hi NvimTreeNormal guibg=none" },
 	},
 	yank_highlight = {
 		{
@@ -81,7 +75,7 @@ M.setup = function()
 
 	if pea.transparent_window then
 		if vim.g.neovide then
-			M.define_augroups({ neovide = default.neovide })
+			vim.g.one_monokai_no_bg = false
 		else
 			M.define_augroups({ transparent_window = default.transparent_window })
 		end

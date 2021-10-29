@@ -39,9 +39,6 @@ pea.plugins = {
 	},
 	{
 		"glepnir/dashboard-nvim",
-		config = function()
-			require("plugins.custom.dashboard").setup()
-		end,
 	},
 	{
 		"numToStr/Comment.nvim",
@@ -121,40 +118,15 @@ pea.builtin.lsp.disable_fmt = {
 	"jsonls",
 }
 
--- set keymap
-pea.keymap = {
-	normal = {
-		["<C-s>"] = ":w<CR>",
-		["<Tab>"] = ":BufferNext<CR>",
-		["<C-e>"] = ":BufferClose<CR>",
-		["<C-b>"] = ":NvimTreeToggle<CR>",
-		["<S-Tab>"] = ":BufferPrevious<CR>",
-		["<C-p>"] = ":Telescope find_files<CR>",
-		["<C-g>"] = ":lua lazygit_toggle()<CR>",
-		["gD"] = ":lua vim.lsp.buf.definition()<CR>",
-		["gr"] = ":lua vim.lsp.buf.references()<CR>",
-		["gd"] = ":lua vim.lsp.buf.declaration()<CR>",
-		["<leader>rn"] = ":lua vim.lsp.buf.rename()<CR>",
-		["<leader>ca"] = ":lua vim.lsp.buf.code_action()<CR>",
-		["<leader>f"] = ":lua vim.lsp.buf.formatting_sync()<CR>",
-	},
-	visual = {
-		["<C-s>"] = ":w!<CR>",
-	},
-}
-
 -- plugins setup
 pea.custom_plugins = {
 	"dashboard",
+	"nvim_tree",
 	"lsp.init",
 	"lsp.null_ls",
 	"lsp.cmp",
 	"lualine.evil_lualine",
 }
-
-require("project_nvim").setup({})
-require("numb").setup({})
-require("telescope").load_extension("projects")
 
 pea.plugin_opts = {
 	mapleader = " ",
@@ -168,31 +140,11 @@ pea.plugin_opts = {
 
 	-- exclude these from numbers
 	numbers_exclude = { "dashboard", "help", "toggleterm", "NvimTree" },
-
-	-- nvim-tree
-	nvim_tree_quit_on_open = 1,
-	nvim_tree_ignore = { ".git", ".DS_Store", ".node_modules", ".cache" },
 }
 
-pea.autocmd = {
-	nvim_tree = {
-		{
-			"BufWinEnter",
-			"NvimTree",
-			":hi NvimTreeFolderIcon guifg=#e5c07b",
-		},
-		{
-			"BufWinEnter",
-			"NvimTree",
-			":hi NvimTreeGitStaged guifg=#98c379",
-		},
-		{
-			"BufWinEnter",
-			"NvimTree",
-			":hi NvimTreeGitDirty guifg=#e06c75",
-		},
-	},
-}
+require("project_nvim").setup({})
+require("numb").setup({})
+require("telescope").load_extension("projects")
 
 -- lazygit toggleterm
 local Terminal = require("toggleterm.terminal").Terminal
@@ -227,23 +179,6 @@ require("nvim-autopairs").setup({
 	ignored_next_char = "[%w%.]",
 	fast_wrap = {
 		map = "<C-w>",
-	},
-})
-
-require("nvim-tree").setup({
-	auto_close = true,
-	hijack_cursor = true,
-	update_cwd = true,
-	update_focused_file = {
-		enable = true,
-		update_cwd = true,
-	},
-	update_to_buf_dir = {
-		auto_open = false,
-	},
-	view = {
-		side = "right",
-		auto_resize = true,
 	},
 })
 
@@ -290,3 +225,25 @@ require("nvim-treesitter.configs").setup({
 		},
 	},
 })
+
+-- set keymap
+pea.keymap = {
+	normal = {
+		["<C-s>"] = ":w<CR>",
+		["<Tab>"] = ":BufferNext<CR>",
+		["<C-e>"] = ":BufferClose<CR>",
+		["<C-b>"] = ":NvimTreeToggle<CR>",
+		["<S-Tab>"] = ":BufferPrevious<CR>",
+		["<C-p>"] = ":Telescope find_files<CR>",
+		["<C-g>"] = ":lua lazygit_toggle()<CR>",
+		["gD"] = ":lua vim.lsp.buf.definition()<CR>",
+		["gr"] = ":lua vim.lsp.buf.references()<CR>",
+		["gd"] = ":lua vim.lsp.buf.declaration()<CR>",
+		["<leader>rn"] = ":lua vim.lsp.buf.rename()<CR>",
+		["<leader>ca"] = ":lua vim.lsp.buf.code_action()<CR>",
+		["<leader>f"] = ":lua vim.lsp.buf.formatting_sync()<CR>",
+	},
+	visual = {
+		["<C-s>"] = ":w!<CR>",
+	},
+}
