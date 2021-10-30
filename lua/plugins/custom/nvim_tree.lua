@@ -3,9 +3,11 @@ local M = {}
 local default = {
 	vim_setup_opts = {
 		nvim_tree_quit_on_open = 1,
-		nvim_tree_ignore = { ".git", ".DS_Store", ".node_modules", ".cache" },
 	},
 	lua_setup_opts = {
+		filters = {
+			custom = { ".git", ".DS_Store", ".node_modules", ".cache" },
+		},
 		auto_close = true,
 		hijack_cursor = true,
 		open_on_setup = true,
