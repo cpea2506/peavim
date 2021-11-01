@@ -9,7 +9,8 @@ This is my configuration for Neovim. Feel free to check it out!
 - Clone this repo into your `nvim` folder.
 - You may need to install [packer](https://github.com/wbthomason/packer.nvim) first.
 - In your terminal: `nvim +PackerInstall`. Maybe some errors would occur. But don't worry, just `Enter` until an installation popup appear.
-- Exit and enter Neovim again. Enjoy your new look!
+- Exit Neovim and enter again. Enjoy your new look!
 
 ## Note
+
 I'm learning how to make this automatically install into your nvim folder, so you won't see any error in the future.
