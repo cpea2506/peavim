@@ -190,13 +190,13 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/CPea2506/.local/share/nvim/site/pack/packer/start/one-monokai-vim"
   },
-  ["one_monokai.nvim"] = {
-    loaded = true,
-    path = "/Users/CPea2506/.local/share/nvim/site/pack/packer/start/one_monokai.nvim"
-  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/Users/CPea2506/.local/share/nvim/site/pack/packer/start/packer.nvim"
+  },
+  playground = {
+    loaded = true,
+    path = "/Users/CPea2506/.local/share/nvim/site/pack/packer/start/playground"
   },
   ["plenary.nvim"] = {
     loaded = true,

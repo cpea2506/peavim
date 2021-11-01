@@ -9,7 +9,6 @@ pea.plugins = {
 	{ "matze/vim-move" },
 	{ "norcalli/nvim-colorizer.lua" },
 	{ "antoinemadec/FixCursorHold.nvim" },
-	{ "nvim-treesitter/nvim-treesitter" },
 	{ "windwp/nvim-ts-autotag" },
 	{ "ahmedkhalf/project.nvim" },
 	{ "williamboman/nvim-lsp-installer" },
@@ -20,6 +19,8 @@ pea.plugins = {
 	{ "nacro90/numb.nvim" },
 	{ "myusuf3/numbers.vim" },
 	{ "simrat39/rust-tools.nvim" },
+	{ "nvim-treesitter/nvim-treesitter" },
+	{ "nvim-treesitter/playground" },
 	{
 		"hrsh7th/nvim-cmp",
 		requires = {
@@ -216,11 +217,11 @@ require("nvim-treesitter.configs").setup({
 		extended_mode = true,
 		colors = {
 			"#E492E1",
-			"#87CEFA",
 			"#FED701",
-			"#FE938C",
 			"#5A81AC",
+			"#FE938C",
 			"#A3F7B5",
+			"#87CEFA",
 			"#D03770",
 		},
 	},
@@ -241,6 +242,7 @@ pea.keymap = {
 		["gd"] = ":lua vim.lsp.buf.declaration()<CR>",
 		["<leader>rn"] = ":lua vim.lsp.buf.rename()<CR>",
 		["<leader>ca"] = ":lua vim.lsp.buf.code_action()<CR>",
+		["<leader>gr"] = ":TSHighlightCapturesUnderCursor<CR>",
 		["<leader>f"] = ":lua vim.lsp.buf.formatting_sync()<CR>",
 	},
 	visual = {
