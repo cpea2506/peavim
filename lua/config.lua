@@ -1,4 +1,5 @@
 pea.plugins = {
+	{ "mg979/vim-visual-multi" },
 	{ "RishabhRD/popfix" },
 	{ "RishabhRD/nvim-lsputils" },
 	{ "andweeb/presence.nvim" },
@@ -107,6 +108,7 @@ pea.builtin.null_ls.sources = {
 		{ exe = "flake8" },
 		{ exe = "eslint_d" },
 		{ exe = "stylelint" },
+		{ exe = "stylelint-scss" },
 	},
 }
 
@@ -141,6 +143,9 @@ pea.plugin_opts = {
 
 	-- exclude these from numbers
 	numbers_exclude = { "dashboard", "help", "toggleterm", "NvimTree" },
+
+	-- vim visual multi
+	VM_mouse_mappings = 1,
 }
 
 require("project_nvim").setup({})
@@ -227,6 +232,13 @@ require("nvim-treesitter.configs").setup({
 	},
 })
 
+require("nvim-web-devicons").set_icon({
+	Dockerfile = {
+		icon = "🐳",
+		color = "#384d54",
+		name = "Dockerfile",
+	},
+})
 -- set keymap
 pea.keymap = {
 	normal = {

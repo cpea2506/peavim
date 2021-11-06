@@ -229,6 +229,10 @@ _G.packer_plugins = {
   ["vim-move"] = {
     loaded = true,
     path = "/Users/CPea2506/.local/share/nvim/site/pack/packer/start/vim-move"
+  },
+  ["vim-visual-multi"] = {
+    loaded = true,
+    path = "/Users/CPea2506/.local/share/nvim/site/pack/packer/start/vim-visual-multi"
   }
 }
 
