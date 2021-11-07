@@ -142,7 +142,7 @@ pea.plugin_opts = {
 	move_key_modifier = "C",
 
 	-- exclude these from numbers
-	numbers_exclude = { "dashboard", "help", "toggleterm", "NvimTree" },
+	numbers_exclude = { "dashboard", "help", "NvimTree" },
 
 	-- vim visual multi
 	VM_mouse_mappings = 1,
@@ -167,12 +167,15 @@ _G.lazygit_toggle = function()
 end
 
 require("toggleterm").setup({
-	size = 15,
-	persist_size = true,
+	hiden_number = true,
 	close_on_exit = true,
 	shade_terminals = false,
 	open_mapping = "<C-t>",
-	direction = "horizontal",
+	direction = "float",
+	float_opts = {
+		windblend = 3,
+		border = "rounded",
+	},
 })
 
 require("presence"):setup({
