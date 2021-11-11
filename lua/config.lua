@@ -1,7 +1,8 @@
 pea.plugins = {
+	{ "lukas-reineke/indent-blankline.nvim" },
 	{ "mg979/vim-visual-multi" },
 	{ "RishabhRD/popfix" },
-	{ "RishabhRD/nvim-lsputils" },
+	{ "tami5/lspsaga.nvim", branch = "nvim51" },
 	{ "andweeb/presence.nvim" },
 	{ "akinsho/toggleterm.nvim" },
 	{ "wbthomason/packer.nvim" },
@@ -22,6 +23,7 @@ pea.plugins = {
 	{ "simrat39/rust-tools.nvim" },
 	{ "nvim-treesitter/nvim-treesitter" },
 	{ "nvim-treesitter/playground" },
+	{ "ray-x/lsp_signature.nvim" },
 	{
 		"hrsh7th/nvim-cmp",
 		requires = {
@@ -108,7 +110,6 @@ pea.builtin.null_ls.sources = {
 		{ exe = "flake8" },
 		{ exe = "eslint_d" },
 		{ exe = "stylelint" },
-		{ exe = "stylelint-scss" },
 	},
 }
 
@@ -123,6 +124,7 @@ pea.builtin.lsp.disable_fmt = {
 
 -- plugins setup
 pea.custom_plugins = {
+	"indent_blankline",
 	"dashboard",
 	"nvim_tree",
 	"lsp.init",
@@ -205,6 +207,7 @@ require("colorizer").setup({
 
 require("nvim-treesitter.configs").setup({
 	ensure_installed = "maintained",
+
 	highlight = {
 		enable = true,
 	},
@@ -224,13 +227,13 @@ require("nvim-treesitter.configs").setup({
 		enable = true,
 		extended_mode = true,
 		colors = {
-			"#E492E1",
-			"#FED701",
-			"#5A81AC",
-			"#FE938C",
-			"#A3F7B5",
-			"#87CEFA",
-			"#D03770",
+			"#e492e1",
+			"#fed701",
+			"#5a81ac",
+			"#fe938c",
+			"#a3f7b5",
+			"#87cefa",
+			"#d03770",
 		},
 	},
 })
@@ -242,6 +245,7 @@ require("nvim-web-devicons").set_icon({
 		name = "Dockerfile",
 	},
 })
+
 -- set keymap
 pea.keymap = {
 	normal = {
@@ -252,12 +256,15 @@ pea.keymap = {
 		["<S-Tab>"] = ":BufferPrevious<CR>",
 		["<C-p>"] = ":Telescope find_files<CR>",
 		["<C-g>"] = ":lua lazygit_toggle()<CR>",
-		["gD"] = ":lua vim.lsp.buf.definition()<CR>",
-		["gr"] = ":lua vim.lsp.buf.references()<CR>",
-		["gd"] = ":lua vim.lsp.buf.declaration()<CR>",
-		["<leader>rn"] = ":lua vim.lsp.buf.rename()<CR>",
-		["<leader>ca"] = ":lua vim.lsp.buf.code_action()<CR>",
 		["<leader>gr"] = ":TSHighlightCapturesUnderCursor<CR>",
+		["<leader>de"] = ":Lspsaga preview_definition<CR>",
+		["<leader>da"] = ":Lspsaga show_line_diagnostics<CR>",
+		["leader>fi"] = ":Lspsaga lsp_finder<CR>",
+		["<leader>do"] = ":Lspsaga hover_doc<CR>",
+		["<C-u>"] = ":lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>",
+		["<C-d>"] = ":lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>",
+		["<leader>rn"] = ":Lspsaga rename<CR>",
+		["<leader>ca"] = ":Lspsaga code_action<CR>",
 		["<leader>f"] = ":lua vim.lsp.buf.formatting_sync()<CR>",
 	},
 	visual = {

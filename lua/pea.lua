@@ -11,7 +11,7 @@ local M = {
 	autocmd = {},
 
 	keymap = {
-		normal = {},
+		hello = {},
 		insert = {},
 		visual = {},
 	},
