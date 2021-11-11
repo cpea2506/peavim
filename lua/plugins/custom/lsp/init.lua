@@ -1,15 +1,5 @@
 local M = {}
 
--- lsputils for better code actions and more
-local set_handler = function()
-	vim.lsp.handlers["textDocument/codeAction"] = require("lsputil.codeAction").code_action_handler
-	vim.lsp.handlers["textDocument/references"] = require("lsputil.locations").references_handler
-	vim.lsp.handlers["textDocument/definition"] = require("lsputil.locations").definition_handler
-	vim.lsp.handlers["textDocument/declaration"] = require("lsputil.locations").declaration_handler
-	vim.lsp.handlers["textDocument/typeDefinition"] = require("lsputil.locations").typeDefinition_handler
-	vim.lsp.handlers["textDocument/implementation"] = require("lsputil.locations").implementation_handler
-end
-
 local capabilities = function()
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 	capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -25,7 +15,10 @@ local capabilities = function()
 	return capabilities
 end
 
-local on_attach = function(client, _)
+local on_attach = function(client, bufnr)
+	require("plugins.custom.lsp.lsp_saga").setup() -- for code action,.diagnostics..
+	require("plugins.custom.lsp.lsp_signatures").setup(bufnr)
+
 	for _, server in pairs(pea.builtin.lsp.disable_fmt) do
 		if client.name == server then
 			client.resolved_capabilities.document_formatting = false
@@ -35,8 +28,6 @@ local on_attach = function(client, _)
 end
 
 M.setup = function()
-	set_handler()
-
 	local lsp_installer = require("nvim-lsp-installer")
 	lsp_installer.on_server_ready(function(server)
 		local opts = {
@@ -51,7 +42,7 @@ M.setup = function()
 	lsp_installer.settings({
 		ui = {
 			icons = {
-				server_installed = "✅",
+				server_installed = "🔋",
 				server_pending = "⏳",
 				server_uninstalled = "💀",
 			},
@@ -59,7 +50,7 @@ M.setup = function()
 				toggle_server_expand = "<CR>",
 				install_server = "i",
 				update_server = "u",
-				uninstall_server = "X",
+				uninstall_server = "d",
 			},
 		},
 	})
