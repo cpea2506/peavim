@@ -15,9 +15,9 @@ local capabilities = function()
 	return capabilities
 end
 
-local on_attach = function(client, bufnr)
+local on_attach = function(client, _)
 	require("plugins.custom.lsp.lsp_saga").setup() -- for code action,.diagnostics..
-	require("plugins.custom.lsp.lsp_signatures").setup(bufnr)
+	require("plugins.custom.lsp.lsp_signatures").setup()
 
 	for _, server in pairs(pea.builtin.lsp.disable_fmt) do
 		if client.name == server then
@@ -34,7 +34,6 @@ M.setup = function()
 			on_attach = on_attach,
 			capabilities = capabilities(),
 		}
-
 		server:setup(opts)
 		vim.cmd("do User LspAttachBuffers")
 	end)
@@ -42,7 +41,7 @@ M.setup = function()
 	lsp_installer.settings({
 		ui = {
 			icons = {
-				server_installed = "🔋",
+				server_installed = "🍀",
 				server_pending = "⏳",
 				server_uninstalled = "💀",
 			},

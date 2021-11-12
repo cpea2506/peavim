@@ -1,5 +1,27 @@
 local M = {}
 
+---@diagnostic disable-next-line: unused-local
+_G.doc_scroll_up = function()
+	require("lspsaga.action").smart_scroll_with_saga(-1)
+end
+---@diagnostic disable-next-line: unused-local
+_G.doc_scroll_down = function()
+	require("lspsaga.action").smart_scroll_with_saga(1)
+end
+
+local key_map = {
+	normal = {
+		["<C-u>"] = ":lua doc_scroll_up()<CR>",
+		["<C-d>"] = ":lua doc_scroll_down()<CR>",
+		["<leader>gh"] = ":Lspsaga lsp_finder<CR>",
+		["<leader>de"] = ":Lspsaga preview_definition<CR>",
+		["<leader>da"] = ":Lspsaga show_line_diagnostics<CR>",
+		["<leader>do"] = ":Lspsaga hover_doc<CR>",
+		["<leader>rn"] = ":Lspsaga rename<CR>",
+		["<leader>ca"] = ":Lspsaga code_action<CR>",
+	},
+}
+
 M.setup = function()
 	local saga = require("lspsaga")
 
@@ -18,7 +40,7 @@ M.setup = function()
 		code_action_prompt = {
 			enable = true,
 			sign = true,
-			sign_priority = 40,
+			sign_priority = 10,
 			virtual_text = true,
 		},
 		finder_definition_icon = "  ",
@@ -43,8 +65,9 @@ M.setup = function()
 		definition_preview_icon = "  ",
 		border_style = "round",
 		rename_prompt_prefix = "➤",
-		server_filetype_map = {},
 	})
+
+	key_mapping.set_keymap(key_map)
 end
 
 return M

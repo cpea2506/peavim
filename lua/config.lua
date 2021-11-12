@@ -239,6 +239,7 @@ require("nvim-treesitter.configs").setup({
 })
 
 require("nvim-web-devicons").set_icon({
+
 	Dockerfile = {
 		icon = "🐳",
 		color = "#384d54",
@@ -257,14 +258,7 @@ pea.keymap = {
 		["<C-p>"] = ":Telescope find_files<CR>",
 		["<C-g>"] = ":lua lazygit_toggle()<CR>",
 		["<leader>gr"] = ":TSHighlightCapturesUnderCursor<CR>",
-		["<leader>de"] = ":Lspsaga preview_definition<CR>",
-		["<leader>da"] = ":Lspsaga show_line_diagnostics<CR>",
-		["leader>fi"] = ":Lspsaga lsp_finder<CR>",
-		["<leader>do"] = ":Lspsaga hover_doc<CR>",
-		["<C-u>"] = ":lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>",
-		["<C-d>"] = ":lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>",
-		["<leader>rn"] = ":Lspsaga rename<CR>",
-		["<leader>ca"] = ":Lspsaga code_action<CR>",
+		["<leader>ft"] = ":lua print(vim.bo.filetype)<CR>",
 		["<leader>f"] = ":lua vim.lsp.buf.formatting_sync()<CR>",
 	},
 	visual = {
