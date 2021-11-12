@@ -17,7 +17,7 @@ M.setup = function()
 	require("indent_blankline").setup({
 		indent_level = 20,
 		max_indent_increase = 1,
-		show_trailing_blankline_indent = false,
+		show_trailing_blankline_indent = true,
 		use_treesitter = true,
 		strict_tabs = true,
 		buftype_exclude = { "terminal" },
@@ -30,7 +30,7 @@ M.setup = function()
 			"dashboard",
 			"md",
 		},
-		space_char_blankline = "",
+		space_char_blankline = " ",
 		char_highlight_list = {
 			"IndentBlanklineIndent1",
 			"IndentBlanklineIndent2",

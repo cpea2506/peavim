@@ -47,7 +47,10 @@ pea.plugins = {
 	{
 		"numToStr/Comment.nvim",
 		config = function()
-			require("Comment").setup()
+			require("Comment").setup({
+				ignore = "^$",
+			})
+			require("Comment").get_config()
 		end,
 	},
 	{
@@ -124,6 +127,7 @@ pea.builtin.lsp.disable_fmt = {
 
 -- plugins setup
 pea.custom_plugins = {
+	"nvim_web_devicon",
 	"indent_blankline",
 	"dashboard",
 	"nvim_tree",
@@ -217,7 +221,8 @@ require("nvim-treesitter.configs").setup({
 			"html",
 			"javascript",
 			"javascriptreact",
-			"xml",
+			"typescript",
+			"typescriptreact",
 		},
 	},
 	indent = {
@@ -235,15 +240,6 @@ require("nvim-treesitter.configs").setup({
 			"#87cefa",
 			"#d03770",
 		},
-	},
-})
-
-require("nvim-web-devicons").set_icon({
-
-	Dockerfile = {
-		icon = "🐳",
-		color = "#384d54",
-		name = "Dockerfile",
 	},
 })
 

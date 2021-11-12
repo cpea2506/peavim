@@ -28,6 +28,7 @@ local default = {
 
 M.setup = function()
 	func.set_plugin_options(default.vim_setup_opts)
+
 	require("nvim-tree").setup(default.lua_setup_opts)
 end
 

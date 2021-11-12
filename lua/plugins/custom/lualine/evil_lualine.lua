@@ -163,12 +163,12 @@ ins_left({
 		local null_ls = require("plugins.custom.lsp.null_ls")
 
 		-- add formatter
-		local supported_formatters = null_ls.list_supported_formatters_names(buf_ft)
-		vim.list_extend(buf_client_names, supported_formatters)
+		local fmt = null_ls.list_active_sources(buf_ft, "FORMATTING")
+		vim.list_extend(buf_client_names, fmt)
 
 		-- add linter
-		local supported_linters = null_ls.list_supported_linters_names(buf_ft)
-		vim.list_extend(buf_client_names, supported_linters)
+		local linter = null_ls.list_active_sources(buf_ft, "DIAGNOSTICS")
+		vim.list_extend(buf_client_names, linter)
 
 		return table.concat(buf_client_names, ", ")
 	end,
