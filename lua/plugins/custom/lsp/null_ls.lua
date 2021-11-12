@@ -26,34 +26,12 @@ local config_source = function(custom_configs)
 	return configs
 end
 
-M.list_registered_providers_names = function(filetype)
-	local u = require("null-ls.utils")
-	local c = require("null-ls.config")
-	local registered = {}
-	for method, source in pairs(c.get()._methods) do
-		for name, filetypes in pairs(source) do
-			if u.filetype_matches(filetypes, filetype) then
-				registered[method] = registered[method] or {}
-				table.insert(registered[method], name)
-			end
-		end
-	end
-	return registered
-end
+M.list_active_sources = function(filetype, method)
+	local info = require("null-ls.info")
+	local spec_method = require("null-ls.methods").internal[method]
 
-local list_supported_method = function(type, filetype)
-	local null_ls_methods = require("null-ls.methods")
-	local method = null_ls_methods.internal[type]
-	local registered_providers = M.list_registered_providers_names(filetype)
-	return registered_providers[method] or {}
-end
-
-M.list_supported_formatters_names = function(filetype)
-	return list_supported_method("FORMATTING", filetype)
-end
-
-M.list_supported_linters_names = function(filetype)
-	return list_supported_method("DIAGNOSTICS", filetype)
+	local active_sources = info.get_active_sources(filetype)
+	return active_sources[spec_method] or {}
 end
 
 M.setup = function()
