@@ -48,7 +48,7 @@ pea.plugins = {
 		"numToStr/Comment.nvim",
 		config = function()
 			require("Comment").setup({
-				ignore = "^$",
+				ignore = "^$", -- ignore empty line
 			})
 			require("Comment").get_config()
 		end,
@@ -74,34 +74,6 @@ pea.plugins = {
 	},
 }
 
--- vim setup
-pea.vim_opts = {
-	hidden = true,
-	hlsearch = true,
-	swapfile = false,
-	smartcase = true,
-	smartindent = true,
-	autoindent = true,
-	undofile = true,
-	showmode = false,
-	showcmd = false,
-	title = true,
-	tabstop = 4,
-	scrolloff = 8,
-	cmdheight = 1,
-	shiftwidth = 4,
-	numberwidth = 2,
-	updatetime = 300,
-	sidescrolloff = 8,
-	signcolumn = "yes",
-	fillchars = "eob: ",
-	colorcolumn = "9999",
-	foldmethod = "manual",
-	clipboard = "unnamedplus",
-	guifont = "MesloLGS NF:h11",
-	completeopt = { "menuone", "noselect" },
-}
-
 pea.builtin.null_ls.sources = {
 	formatting = {
 		{ exe = "prettierd" },
@@ -116,42 +88,13 @@ pea.builtin.null_ls.sources = {
 	},
 }
 
--- some language servers has fomatter on default
+-- Some language servers has fomatter on default
 -- but it seem didn't work sometimes
 -- disabled to use null-ls instead
 pea.builtin.lsp.disable_fmt = {
 	"rust_analyzer",
 	"tsserver",
 	"jsonls",
-}
-
--- plugins setup
-pea.custom_plugins = {
-	"nvim_web_devicon",
-	"indent_blankline",
-	"dashboard",
-	"nvim_tree",
-	"lsp.init",
-	"lsp.null_ls",
-	"lsp.cmp",
-	"lualine.evil_lualine",
-}
-
-pea.plugin_opts = {
-	mapleader = " ",
-
-	-- neovide
-	neovide_cursor_animation_length = 0.12,
-	neovide_cursor_vfx_mode = "sonicboom",
-
-	-- vim move
-	move_key_modifier = "C",
-
-	-- exclude these from numbers
-	numbers_exclude = { "dashboard", "help", "NvimTree" },
-
-	-- vim visual multi
-	VM_mouse_mappings = 1,
 }
 
 require("project_nvim").setup({})

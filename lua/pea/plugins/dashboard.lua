@@ -20,7 +20,7 @@ local align_center = function(lines, alignment)
 end
 
 M.config = function()
-	local config_path = "~/.config/nvim/lua/config.lua"
+	local config_path = "~/.config/nvim/lua/pea/config/init.lua"
 	local packer_path = "~/.local/share/nvim/site/pack/packer/start"
 	local num_plugins_loaded = #vim.fn.globpath(packer_path, "*", 0, 1)
 	local name = "PeaVim"
@@ -66,7 +66,7 @@ end
 M.setup = function()
 	M.config()
 
-	func.set_plugin_options(pea.builtin.dashboard)
+	require("pea.utils.func").set_plugin_options(pea.builtin.dashboard)
 end
 
 return M

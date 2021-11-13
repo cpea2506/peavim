@@ -4,4 +4,4 @@ set mouse=a
 
 colorscheme one_monokai
 
-lua require("init")
+lua require("pea")

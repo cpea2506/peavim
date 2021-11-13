@@ -160,7 +160,7 @@ ins_left({
 			end
 		end
 
-		local null_ls = require("plugins.custom.lsp.null_ls")
+		local null_ls = require("pea.plugins.lsp.null_ls")
 
 		-- add formatter
 		local fmt = null_ls.list_active_sources(buf_ft, "FORMATTING")

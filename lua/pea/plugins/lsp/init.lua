@@ -16,8 +16,8 @@ local capabilities = function()
 end
 
 local on_attach = function(client, _)
-	require("plugins.custom.lsp.lsp_saga").setup() -- for code action,.diagnostics..
-	require("plugins.custom.lsp.lsp_signatures").setup()
+	require("pea.plugins.lsp.lsp_saga").setup() -- for code action,.diagnostics..
+	require("pea.plugins.lsp.lsp_signatures").setup()
 
 	for _, server in pairs(pea.builtin.lsp.disable_fmt) do
 		if client.name == server then

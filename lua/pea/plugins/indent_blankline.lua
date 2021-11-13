@@ -12,7 +12,7 @@ local custom = {
 }
 
 M.setup = function()
-	autocmd.define_augroups({ indent_blankline_color = custom.indent_blankline_color })
+	require("pea.utils.autocmd").define_augroups({ indent_blankline_color = custom.indent_blankline_color })
 
 	require("indent_blankline").setup({
 		indent_level = 20,

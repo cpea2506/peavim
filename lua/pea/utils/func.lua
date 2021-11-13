@@ -1,6 +1,6 @@
 local M = {}
 
-local function set_options(scope, opts)
+local set_options = function(scope, opts)
 	for opt, value in pairs(opts) do
 		scope[opt] = value
 	end
@@ -17,7 +17,7 @@ M.set_plugin_options = function(opts)
 end
 
 M.call_plugins = function(plugs)
-	local plug_dir = "plugins.custom"
+	local plug_dir = "pea.plugins"
 	for _, plug in pairs(plugs) do
 		require(plug_dir .. "." .. plug).setup()
 	end
