@@ -1,16 +1,5 @@
 local M = {}
 
-local builtin_plugins = {
-	"nvim_web_devicon",
-	"indent_blankline",
-	"dashboard",
-	"nvim_tree",
-	"lsp",
-	"lsp.null_ls",
-	"lsp.cmp",
-	"lualine.evil_lualine",
-}
-
 local plugins_opts = {
 	mapleader = " ",
 
@@ -88,7 +77,6 @@ M.setup = function()
 
 	func.set_vim_options(vim.list_extend(vim_opts, M.init.vim_opts))
 	func.set_plugin_options(vim.list_extend(plugins_opts, M.init.plugin_opts))
-	func.call_plugins(builtin_plugins)
 end
 
 return M
