@@ -28,12 +28,12 @@ local default = {
 	packer_on_save = {
 		{
 			"BufWritePost",
-			"../config/init.lua",
+			"init.lua",
 			"PackerInstall",
 		},
 		{
 			"BufWritePost",
-			"../*",
+			"init.lua",
 			"PackerCompile",
 		},
 	},
