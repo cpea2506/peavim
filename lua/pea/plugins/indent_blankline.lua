@@ -15,7 +15,7 @@ M.setup = function()
 	require("pea.utils.autocmd").define_augroups({ indent_blankline_color = custom.indent_blankline_color })
 
 	require("indent_blankline").setup({
-		indent_level = 20,
+		indent_level = 10,
 		max_indent_increase = 1,
 		show_trailing_blankline_indent = true,
 		use_treesitter = true,

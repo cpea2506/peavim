@@ -1,5 +1,3 @@
-local M = {}
-
 local builtin_plugins = {
 	"nvim_web_devicon",
 	"indent_blankline",
@@ -11,11 +9,11 @@ local builtin_plugins = {
 	"lualine.evil_lualine",
 }
 
-M.setup = function()
-	local func = require("pea.utils.func")
+return {
+	setup = function()
+		local func = require("pea.utils.func")
 
-	func.plugin_install(pea.plugins)
-	func.call_plugins(builtin_plugins)
-end
-
-return M
+		func.call_setup(builtin_plugins)
+		func.plugin_install(pea.plugins)
+	end,
+}

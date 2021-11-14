@@ -16,10 +16,11 @@ M.set_plugin_options = function(opts)
 	set_options(scope, opts)
 end
 
-M.call_plugins = function(plugs)
-	local plug_dir = "pea.plugins"
-	for _, plug in pairs(plugs) do
-		require(plug_dir .. "." .. plug).setup()
+M.call_setup = function(modules, dir)
+	local setup_dir = dir or "pea.plugins"
+
+	for _, module in pairs(modules) do
+		require(setup_dir .. "." .. module).setup()
 	end
 end
 
