@@ -36,7 +36,7 @@ M.setup = function()
 		code_action_prompt = {
 			enable = true,
 			sign = true,
-			sign_priority = 10,
+			sign_priority = 20,
 			virtual_text = true,
 		},
 		finder_definition_icon = "  ",
