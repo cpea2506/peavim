@@ -5,19 +5,12 @@ local check_backspace = function()
 	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
-local function T(str)
-	return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-M.config = function()
-	local status_cmp_ok, cmp = pcall(require, "cmp")
-	if not status_cmp_ok then
-		return
-	end
+local function jumpable(dir)
 	local status_luasnip_ok, luasnip = pcall(require, "luasnip")
 	if not status_luasnip_ok then
 		return
 	end
+
 	local win_get_cursor = vim.api.nvim_win_get_cursor
 	local get_current_buf = vim.api.nvim_get_current_buf
 
@@ -97,15 +90,40 @@ M.config = function()
 		return false
 	end
 
+	if dir == -1 then
+		return inside_snippet() and luasnip.jumpable(-1)
+	else
+		return inside_snippet() and seek_luasnip_cursor_node() and luasnip.jumpable()
+	end
+end
+
+M.config = function()
+	local status_cmp_ok, cmp = pcall(require, "cmp")
+	if not status_cmp_ok then
+		return
+	end
+
+	local status_luasnip_ok, luasnip = pcall(require, "luasnip")
+	if not status_luasnip_ok then
+		return
+	end
+
 	pea.builtin.cmp = {
 		confirm_opts = {
 			behavior = cmp.ConfirmBehavior.Replace,
-			select = false,
+			select = true,
+		},
+		completion = {
+			keyword_length = 1,
 		},
 		snippet = {
 			expand = function(args)
 				luasnip.lsp_expand(args.body)
 			end,
+		},
+		experimental = {
+			ghost_text = true,
+			native_menu = false,
 		},
 		sources = {
 			{ name = "nvim_lsp" },
@@ -134,17 +152,17 @@ M.config = function()
 		mapping = {
 			["<C-k>"] = cmp.mapping.scroll_docs(-4),
 			["<C-j>"] = cmp.mapping.scroll_docs(4),
-			["<Tab>"] = cmp.mapping(function()
+			["<Tab>"] = cmp.mapping(function(fallback)
 				if cmp.visible() then
 					cmp.select_next_item()
 				elseif luasnip.expandable() then
 					luasnip.expand()
-				elseif inside_snippet() and seek_luasnip_cursor_node() and luasnip.jumpable() then
+				elseif jumpable() then
 					luasnip.jump(1)
 				elseif check_backspace() then
-					vim.fn.feedkeys(T("<Tab>"), "n")
+					fallback()
 				else
-					vim.fn.feedkeys(T("<Tab>"), "n")
+					fallback()
 				end
 			end, {
 				"i",
@@ -167,7 +185,7 @@ M.config = function()
 					return
 				end
 
-				if inside_snippet() and seek_luasnip_cursor_node() and luasnip.jumpable() then
+				if jumpable() then
 					if not luasnip.jump(1) then
 						fallback()
 					end
@@ -186,8 +204,8 @@ end
 M.setup = function()
 	M.config()
 
-	require("cmp").setup(pea.builtin.cmp)
 	require("luasnip/loaders/from_vscode").lazy_load()
+	require("cmp").setup(pea.builtin.cmp)
 end
 
 return M
