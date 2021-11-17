@@ -17,7 +17,7 @@ M.setup = function()
 	require("indent_blankline").setup({
 		indent_level = 10,
 		max_indent_increase = 1,
-		show_trailing_blankline_indent = true,
+		show_trailing_blankline_indent = false,
 		use_treesitter = true,
 		strict_tabs = true,
 		buftype_exclude = { "terminal" },
