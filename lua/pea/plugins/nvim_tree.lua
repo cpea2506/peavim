@@ -31,12 +31,6 @@ local default = {
 				symlink = "",
 				symlink_open = "",
 			},
-			lsp = {
-				hint = "",
-				info = "",
-				warning = "",
-				error = "",
-			},
 		},
 	},
 	lua_setup_opts = {
@@ -50,15 +44,6 @@ local default = {
 		filters = {
 			dotfiles = true,
 			custom = { ".git", ".DS_Store", "node_modules", ".cache" },
-		},
-		diagnostics = {
-			enable = true,
-			icons = {
-				hint = "",
-				info = "",
-				warning = "",
-				error = "",
-			},
 		},
 		git = {
 			enable = true,

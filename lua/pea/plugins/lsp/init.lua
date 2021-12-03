@@ -45,35 +45,6 @@ local handlers = function()
 end
 
 M.setup = function()
-	local sumneko_root_path = "/Users/CPea2506/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/macOS"
-	local sumneko_binary = sumneko_root_path .. "/lua-language-server"
-	local sumneko_main = sumneko_root_path .. "/main.lua"
-
-	local runtime_path = vim.split(package.path, ";")
-	table.insert(runtime_path, "lua/?.lua")
-	table.insert(runtime_path, "lua/?/init.lua")
-
-	require("lspconfig").sumneko_lua.setup({
-		cmd = { sumneko_binary, "-E", sumneko_main },
-		settings = {
-			Lua = {
-				runtime = {
-					version = "5.4.3",
-					path = runtime_path,
-				},
-				diagnostics = {
-					globals = { "vim" },
-				},
-				workspace = {
-					library = vim.api.nvim_get_runtime_file("", true),
-				},
-				telemetry = {
-					enable = false,
-				},
-			},
-		},
-	})
-
 	local lsp_installer = require("nvim-lsp-installer")
 	lsp_installer.on_server_ready(function(server)
 		local opts = {
