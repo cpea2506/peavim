@@ -1,11 +1,12 @@
 local M = {}
 
----@diagnostic disable-next-line: unused-local
-_G.doc_scroll_up = function()
+---@diagnostic disable-next-line: unused-local, lowercase-global
+doc_scroll_up = function()
 	require("lspsaga.action").smart_scroll_with_saga(-1)
 end
----@diagnostic disable-next-line: unused-local
-_G.doc_scroll_down = function()
+
+---@diagnostic disable-next-line: unused-local, lowercase-global
+doc_scroll_down = function()
 	require("lspsaga.action").smart_scroll_with_saga(1)
 end
 
@@ -25,18 +26,18 @@ local key_map = {
 M.setup = function()
 	local saga = require("lspsaga")
 
-	saga.init_lsp_saga({
+	saga.setup({
 		use_saga_diagnostic_sign = true,
 		error_sign = "",
 		warn_sign = "",
 		hint_sign = "",
 		infor_sign = "",
-		dianostic_header_icon = "   ",
+		diagnostic_header_icon = "   ",
 		code_action_icon = " ",
 		code_action_prompt = {
 			enable = true,
 			sign = true,
-			sign_priority = 20,
+			sign_priority = 40,
 			virtual_text = true,
 		},
 		finder_definition_icon = "  ",

@@ -146,6 +146,7 @@ M.config = function()
 					nvim_lsp = "(LSP)",
 					path = "(Path)",
 					luasnip = "(Snippet)",
+					nvim_lua = "(Lua)",
 				},
 			}),
 		},

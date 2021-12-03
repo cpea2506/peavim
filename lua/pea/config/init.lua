@@ -1,8 +1,8 @@
 pea.plugins = {
-	{ "lukas-reineke/indent-blankline.nvim" },
 	{ "mg979/vim-visual-multi" },
+	{ "lukas-reineke/indent-blankline.nvim" },
 	{ "RishabhRD/popfix" },
-	{ "tami5/lspsaga.nvim", branch = "nvim51" },
+	{ "tami5/lspsaga.nvim" },
 	{ "andweeb/presence.nvim" },
 	{ "akinsho/toggleterm.nvim" },
 	{ "wbthomason/packer.nvim" },
@@ -111,7 +111,8 @@ local lazygit = Terminal:new({
 	},
 })
 
-_G.lazygit_toggle = function()
+---@diagnostic disable-next-line: lowercase-global
+lazygit_toggle = function()
 	lazygit:toggle()
 end
 
@@ -128,7 +129,11 @@ require("toggleterm").setup({
 })
 
 require("presence"):setup({
+	auto_update = true,
+	neovim_image_text = "NeoVim, not Vim pls!",
 	main_image = "file",
+	client_id = "383226320970055681",
+	buttons = true,
 })
 
 require("nvim-autopairs").setup({

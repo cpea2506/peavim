@@ -9,7 +9,7 @@ local plugins_opts = {
 	move_key_modifier = "C",
 
 	-- exclude these from numbers
-	numbers_exclude = { "dashboard", "help", "NvimTree" },
+	numbers_exclude = { "dashboard", "help" },
 
 	-- vim visual multi
 	VM_mouse_mappings = 1,
@@ -38,7 +38,7 @@ local vim_opts = {
 	colorcolumn = "9999",
 	foldmethod = "manual",
 	clipboard = "unnamedplus",
-	guifont = "MesloLGS NF:h11",
+	guifont = "MesloLGS NF:h20",
 	completeopt = { "menuone", "noselect" },
 }
 
