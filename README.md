@@ -14,3 +14,10 @@ This is my configuration for Neovim. Feel free to check it out!
 ## Note
 
 I'm learning how to make this automatically install into your nvim folder, so you won't see any error in the future.
+
+<div align="center">
+  
+  [![Lua](https://img.shields.io/badge/Made%20with%20Lua-blue.svg?style=for-the-badge&logo=lua)](#madewithlua) 
+  [![NeoVim](https://img.shields.io/badge/Made%20with%20NeoVim-brightgreen.svg?style=for-the-badge&logo=neovim)](#madewithneovim)
+  
+ </div>
