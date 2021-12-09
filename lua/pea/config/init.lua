@@ -15,7 +15,6 @@ pea.plugins = {
 	{ "ahmedkhalf/project.nvim" },
 	{ "williamboman/nvim-lsp-installer" },
 	{ "neovim/nvim-lspconfig" },
-	{ "onsails/lspkind-nvim" },
 	{ "windwp/nvim-autopairs" },
 	{ "p00f/nvim-ts-rainbow" },
 	{ "nacro90/numb.nvim" },
@@ -97,6 +96,8 @@ pea.builtin.lsp.disable_fmt = {
 	"jsonls",
 }
 
+pea.transparent_window = true
+
 require("project_nvim").setup({})
 require("numb").setup({})
 require("telescope").load_extension("projects")
@@ -109,6 +110,12 @@ local lazygit = Terminal:new({
 	float_opts = {
 		border = "rounded",
 	},
+})
+
+vim.diagnostic.config({
+	virtual_text = true,
+	underline = false,
+	signs = true,
 })
 
 ---@diagnostic disable-next-line: lowercase-global
@@ -132,7 +139,7 @@ require("presence"):setup({
 	auto_update = true,
 	neovim_image_text = "NeoVim, not Vim pls!",
 	main_image = "file",
-	client_id = "383226320970055681",
+	client_id = "914799712794705961",
 	buttons = true,
 })
 
@@ -159,7 +166,6 @@ require("colorizer").setup({
 
 require("nvim-treesitter.configs").setup({
 	ensure_installed = "maintained",
-
 	highlight = {
 		enable = true,
 	},
@@ -203,7 +209,7 @@ pea.keymap = {
 		["<C-g>"] = ":lua lazygit_toggle()<CR>",
 		["<leader>gr"] = ":TSHighlightCapturesUnderCursor<CR>",
 		["<leader>ft"] = ":lua print(vim.bo.filetype)<CR>",
-		["<leader>f"] = ":lua vim.lsp.buf.formatting_sync()<CR>",
+		["<leader>fo"] = ":lua vim.lsp.buf.formatting_sync()<CR>",
 	},
 	visual = {
 		["<C-s>"] = ":w!<CR>",
