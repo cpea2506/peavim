@@ -2,8 +2,7 @@
 
 This is my configuration for Neovim. Feel free to check it out!
 
-  <img width="1680" alt="Screen Shot 2021-10-16 at 22 02 28" src="https://user-images.githubusercontent.com/42694704/137592324-3c553190-b8ed-40f0-b8b7-b2c13c305e63.png">
- </div>
+<img width="1680" alt="Screen Shot 2021-10-16 at 22 02 28" src="https://user-images.githubusercontent.com/42694704/137592324-3c553190-b8ed-40f0-b8b7-b2c13c305e63.png">
  
  ## Installation
 - Clone this repo into your `nvim` folder.
@@ -16,8 +15,8 @@ This is my configuration for Neovim. Feel free to check it out!
 I'm learning how to make this automatically install into your nvim folder, so you won't see any error in the future.
 
 <div align="center">
-  
-  [![Lua](https://img.shields.io/badge/Made%20with%20Lua-blue.svg?style=for-the-badge&logo=lua)](#madewithlua) 
-  [![NeoVim](https://img.shields.io/badge/Made%20with%20NeoVim-brightgreen.svg?style=for-the-badge&logo=neovim)](#madewithneovim)
-  
- </div>
+	
+[![Lua](https://img.shields.io/badge/Made%20with%20Lua-blue.svg?style=for-the-badge&logo=lua)](#madewithlua) 
+[![NeoVim](https://img.shields.io/badge/Made%20with%20NeoVim-white.svg?style=for-the-badge&logo=neovim)](#madewithneovim)
+	
+</div>
