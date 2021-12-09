@@ -66,7 +66,7 @@ end
 M.setup = function()
 	M.config()
 
-	require("pea.utils.func").set_plugin_options(pea.builtin.dashboard)
+	pea.utils.func.set_plugins_options(pea.builtin.dashboard)
 end
 
 return M

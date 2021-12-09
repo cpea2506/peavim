@@ -11,7 +11,7 @@ M.set_vim_options = function(opts)
 	set_options(scope, opts)
 end
 
-M.set_plugin_options = function(opts)
+M.set_plugins_options = function(opts)
 	local scope = vim.g
 	set_options(scope, opts)
 end
@@ -22,6 +22,10 @@ M.call_setup = function(modules, dir)
 	for _, module in pairs(modules) do
 		require(setup_dir .. "." .. module).setup()
 	end
+end
+
+M.extend = function(left, right)
+	return vim.tbl_extend("force", left, right)
 end
 
 M.plugin_install = function(plugs)

@@ -2,6 +2,7 @@ local M = {}
 
 local default = {
 	vim_setup_opts = {
+		nvim_tree_special_files = "",
 		vim_tree_git_hl = 1,
 		nvim_tree_quit_on_open = 1,
 		nvim_tree_show_icons = {
@@ -43,7 +44,6 @@ local default = {
 		update_cwd = true,
 		filters = {
 			dotfiles = true,
-			custom = { ".git", ".DS_Store", "node_modules", ".cache" },
 		},
 		git = {
 			enable = true,
@@ -72,7 +72,7 @@ local default = {
 }
 
 M.setup = function()
-	require("pea.utils.func").set_plugin_options(default.vim_setup_opts)
+	pea.utils.func.set_plugins_options(default.vim_setup_opts)
 
 	require("nvim-tree").setup(default.lua_setup_opts)
 end

@@ -3,7 +3,7 @@ _G.pea = require("pea.config.default")
 
 require("pea.config")
 
-require("pea.utils.func").call_setup({
+pea.utils.func.call_setup({
 	"plugins",
 	"config.options",
 	"utils.autocmd",

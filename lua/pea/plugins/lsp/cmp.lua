@@ -138,8 +138,7 @@ M.config = function()
 			border = "rounded",
 		},
 		formatting = {
-			format = require("lspkind").cmp_format({
-				with_text = true,
+			format = require("pea.plugins.lsp.lsp_kind").setup({
 				menu = {
 					crates = "(Crates)",
 					calc = "(Calc)",

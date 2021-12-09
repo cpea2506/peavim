@@ -4,16 +4,14 @@ return {
 	format_on_save = true,
 	yank_highlight = true,
 	vim_opts = {},
-	plugin_opts = {},
+	plugins_opts = {},
 	plugins = {},
-	autocmd = {},
-
+	autocmd_opts = {},
 	keymap = {
 		normal = {},
 		insert = {},
 		visual = {},
 	},
-
 	builtin = {
 		dashboard = {},
 		cmp = {},
@@ -24,4 +22,5 @@ return {
 			disabled_fmt = {},
 		},
 	},
+	utils = require("pea.utils"),
 }

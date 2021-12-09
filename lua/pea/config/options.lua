@@ -9,7 +9,7 @@ local plugins_opts = {
 	move_key_modifier = "C",
 
 	-- exclude these from numbers
-	numbers_exclude = { "dashboard", "help" },
+	numbers_exclude = { "toggleterm", "dashboard", "help", "NvimTree" },
 
 	-- vim visual multi
 	VM_mouse_mappings = 1,
@@ -38,18 +38,17 @@ local vim_opts = {
 	colorcolumn = "9999",
 	foldmethod = "manual",
 	clipboard = "unnamedplus",
-	guifont = "MesloLGS NF:h20",
 	completeopt = { "menuone", "noselect" },
 }
 
 return {
 	setup = function()
-		local func = require("pea.utils.func")
+		local func = pea.utils.func
 
-		func.set_vim_options(vim_opts)
-		func.set_plugin_options(plugins_opts)
+		local vim_extend = func.extend(vim_opts, pea.vim_opts)
+		local plugins_extend = func.extend(plugins_opts, pea.plugins_opts)
 
-		func.set_vim_options(pea.vim_opts)
-		func.set_plugin_options(pea.plugin_opts)
+		func.set_vim_options(vim_extend)
+		func.set_plugins_options(plugins_extend)
 	end,
 }

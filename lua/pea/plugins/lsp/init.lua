@@ -27,30 +27,12 @@ local on_attach = function(client, _)
 	end
 end
 
-local handlers = function()
-	local setup = {
-		underline = false,
-		virtual_text = {
-			spacing = 4,
-		},
-		signs = true,
-		update_in_insert = false,
-	}
-
-	local handlers = {
-		["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, setup),
-	}
-
-	return handlers
-end
-
 M.setup = function()
 	local lsp_installer = require("nvim-lsp-installer")
 	lsp_installer.on_server_ready(function(server)
 		local opts = {
 			on_attach = on_attach,
 			capabilities = capabilities(),
-			handlers = handlers(),
 		}
 		server:setup(opts)
 		vim.cmd("do User LspAttachBuffers")

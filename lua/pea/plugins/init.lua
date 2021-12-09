@@ -11,7 +11,7 @@ local builtin_plugins = {
 
 return {
 	setup = function()
-		local func = require("pea.utils.func")
+		local func = pea.utils.func
 
 		func.call_setup(builtin_plugins)
 		func.plugin_install(pea.plugins)
