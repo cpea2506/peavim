@@ -1,18 +1,78 @@
 local M = {}
 
 local custom_icons = {
+	lock = {
+		icon = "",
+		color = "#bbbbbb",
+		name = "Lock",
+	},
+	log = {
+		icon = "",
+		color = "#ffffff",
+		name = "Log",
+	},
+	json = {
+		icon = "ﬥ",
+		color = "#cbcb41",
+		name = "Json",
+	},
+	ts = {
+		icon = "ﯤ",
+		color = "#3172bc",
+		name = "Ts",
+	},
+	js = {
+		icon = "",
+		color = "#e7d54c",
+		name = "Js",
+	},
+	Procfile = {
+		icon = "",
+		color = "#6e286c",
+		name = "Procfile",
+	},
 	Dockerfile = {
-		icon = "🐳",
+		icon = "",
 		color = "#00a4ff",
 		name = "Dockerfile",
 	},
+	["Dockerfile.dev"] = {
+		icon = "",
+		color = "#00a4ff",
+		name = "Dockerfile",
+	},
+	["docker-compose.yml"] = {
+		icon = "",
+		color = "#00a4ff",
+		name = "Dockerfile",
+	},
+	["Dockerfile.prod"] = {
+		icon = "",
+		color = "#00a4ff",
+		name = "Dockerfile",
+	},
+	[".dockerignore"] = {
+		icon = "",
+		color = "#00a4ff",
+		name = "Dockerfile",
+	},
+	[".env"] = {
+		icon = "",
+		color = "#faf743",
+		name = "Env",
+	},
+	[".env.local"] = {
+		icon = "",
+		color = "#faf743",
+		name = "Env",
+	},
 	css = {
-		icon = "",
+		icon = "",
 		color = "#42a5f5",
 		name = "Css",
 	},
 	xml = {
-		icon = "",
+		icon = "",
 		color = "#98C15C",
 		name = "Xml",
 	},
@@ -27,12 +87,12 @@ local custom_icons = {
 		name = "GitModules",
 	},
 	vim = {
-		icon = "",
+		icon = "",
 		color = "#43a047",
 		name = "Vim",
 	},
 	html = {
-		icon = "",
+		icon = "",
 		color = "#e44d26",
 		name = "Html",
 	},
@@ -42,9 +102,9 @@ local custom_icons = {
 		name = "Yaml",
 	},
 	yml = {
-		icon = "",
+		icon = "",
 		color = "#ff5252",
-		name = "Yml",
+		name = "Yaml",
 	},
 	lua = {
 		icon = "",
@@ -66,15 +126,20 @@ local custom_icons = {
 		color = "#3c78aa",
 		name = "Pyo",
 	},
+	md = {
+		icon = "",
+		color = "#ffffff",
+		name = "Md",
+	},
 	py = {
 		icon = "",
 		color = "#3c78aa",
-		name = "Py",
+		name = "Python",
 	},
 	rs = {
 		icon = "",
 		color = "#EE7950",
-		name = "Rs",
+		name = "Rust",
 	},
 }
 
