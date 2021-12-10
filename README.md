@@ -13,10 +13,23 @@ This is my configuration for Neovim. Feel free to check it out!
 <img width="1680" alt="Screen Shot 2021-10-16 at 22 02 28" src="https://user-images.githubusercontent.com/42694704/137592324-3c553190-b8ed-40f0-b8b7-b2c13c305e63.png">
  
  ## Installation
-- Clone this repo into your `nvim` folder.
-- You may need to install [packer](https://github.com/wbthomason/packer.nvim) first.
-- In your terminal: `nvim +PackerInstall`. Maybe some errors would occur. But don't worry, just `Enter` until an installation popup appear.
-- Exit Neovim and enter again. Enjoy your new look!
+To get started, first you need to install [packer](https://github.com/wbthomason/packer.nvim). Then clone this repo into your `nvim` folder.
+
+> For Linux and Unix 
+
+```zsh
+git clone git@github.com:cpea2506/peavim.git ~/.config/nvim && cd ~/.config/nvim
+```
+
+After that, in your terminal: 
+
+```zsh
+nvim +PackerInstall
+```
+
+Maybe some errors would occur. But don't worry, just press `Return` until an installation popup appears.
+
+Exit Neovim and enter again. Enjoy your new look!
 
 ## Note
 
