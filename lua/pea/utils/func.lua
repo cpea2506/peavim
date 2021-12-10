@@ -16,11 +16,31 @@ M.set_plugins_options = function(opts)
 	set_options(scope, opts)
 end
 
+M.prequire = function(module)
+	local msgh = function()
+		return "Module " .. module .. " not found..."
+	end
+
+	local ok, err = xpcall(require, msgh, module)
+
+	if not ok then
+		error(("Error loading %s...\n\n%s"):format(module, err))
+		return nil, err
+	end
+
+	return err
+end
+
 M.call_setup = function(modules, dir)
 	local setup_dir = dir or "pea.plugins"
 
 	for _, module in pairs(modules) do
-		require(setup_dir .. "." .. module).setup()
+		local mod_dir = setup_dir .. "." .. module
+		local mod = M.prequire(mod_dir)
+
+		if mod then
+			mod.setup()
+		end
 	end
 end
 
@@ -30,6 +50,7 @@ end
 
 M.plugin_install = function(plugs)
 	local packer = require("packer")
+
 	packer.startup({
 		function()
 			local use = packer.use
