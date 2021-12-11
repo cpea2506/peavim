@@ -49,6 +49,7 @@ pea.plugins = {
 			require("Comment").setup({
 				ignore = "^$", -- ignore empty line
 			})
+
 			require("Comment").get_config()
 		end,
 	},
