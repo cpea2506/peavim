@@ -104,8 +104,8 @@ end
 theme.load_plugins = function()
 	local plugins = {
 		-- dashboard
-		DashboardHeader = { fg = colors.cyan },
-		DashboardCenter = { fg = colors.yellow },
+		DashboardHeader = { fg = colors.peanut },
+		DashboardCenter = { fg = colors.roman },
 		DashboardFooter = { fg = colors.aqua },
 
 		-- NvimTree
@@ -170,7 +170,7 @@ theme.load_lang = function()
 		tsxTSVariableBuiltin = { fg = colors.aqua },
 		tsxTSParameter = { fg = colors.orange, style = "italic" },
 
-		-- Html
+		-- html
 		htmlTag = { fg = colors.white },
 		htmlEndTag = { fg = colors.white },
 		htmlTagName = { fg = colors.pink },
@@ -189,7 +189,7 @@ theme.load_lang = function()
 		xmlTagName = { fg = colors.orange },
 		xmlAttrib = { fg = colors.green },
 
-		-- CSS
+		-- css
 		cssProp = { fg = colors.yellow },
 		cssUIAttr = { fg = colors.yellow },
 		cssFunctionName = { fg = colors.cyan },

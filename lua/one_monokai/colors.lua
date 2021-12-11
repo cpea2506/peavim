@@ -11,9 +11,11 @@ local colors = {
 	warmgrey = "#676e7b",
 
 	pink = "#e06c75",
+	roman = "#ee6f73",
 	green = "#98C379",
 	aqua = "#61afef",
 	cyan = "#56b6c2",
+	peanut = "#f6d5a4",
 	yellow = "#e5c07b",
 	orange = "#d19a66",
 	purple = "#c678dd",
