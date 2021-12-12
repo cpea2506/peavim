@@ -1,19 +1,6 @@
 local M = {}
 
-local custom = {
-	indent_blankline_color = {
-		{ "ColorScheme", "*", "hi IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine" },
-		{ "ColorScheme", "*", "hi IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine" },
-		{ "ColorScheme", "*", "hi IndentBlanklineIndent3 guifg=#98C379 gui=nocombine" },
-		{ "ColorScheme", "*", "hi IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine" },
-		{ "ColorScheme", "*", "hi IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine" },
-		{ "ColorScheme", "*", "hi IndentBlanklineIndent6 guifg=#C678DD gui=nocombine" },
-	},
-}
-
 M.setup = function()
-	require("pea.utils.autocmd").define_augroups({ indent_blankline_color = custom.indent_blankline_color })
-
 	require("indent_blankline").setup({
 		indent_level = 10,
 		max_indent_increase = 1,

@@ -91,14 +91,13 @@ pea.plugins = {
 			{ "hrsh7th/cmp-path", event = "InsertCharPre" },
 			{ "hrsh7th/cmp-nvim-lua", ft = "lua", event = "InsertCharPre" },
 			{ "hrsh7th/cmp-calc", event = "InsertCharPre" },
-			{ "ray-x/cmp-treesitter", event = "InsertCharPre" },
 		},
 	},
 	{
 		"Saecki/crates.nvim",
 		event = { "BufRead Cargo.toml" },
 		config = function()
-			require("crate").setup()
+			require("pea.plugins.crate").setup()
 		end,
 	},
 	{
