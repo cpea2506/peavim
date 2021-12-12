@@ -1,11 +1,11 @@
 local builtin_plugins = {
-	"nvim_web_devicon",
-	"indent_blankline",
-	"dashboard",
-	"nvim_tree",
 	"lsp",
-	"lsp.null_ls",
 	"lsp.cmp",
+	"lsp.null_ls",
+	"builtin.dashboard",
+	"builtin.nvim_tree",
+	"builtin.indent_blankline",
+	"builtin.nvim_web_devicon",
 	"lualine.evil_lualine",
 }
 

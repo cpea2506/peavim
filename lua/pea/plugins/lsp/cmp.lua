@@ -98,13 +98,13 @@ local function jumpable(dir)
 end
 
 M.config = function()
-	local status_cmp_ok, cmp = pcall(require, "cmp")
-	if not status_cmp_ok then
+	local cmp_ok, cmp = pcall(require, "cmp")
+	if not cmp_ok then
 		return
 	end
 
-	local status_luasnip_ok, luasnip = pcall(require, "luasnip")
-	if not status_luasnip_ok then
+	local luasnip_ok, luasnip = pcall(require, "luasnip")
+	if not luasnip_ok then
 		return
 	end
 
@@ -116,6 +116,7 @@ M.config = function()
 		completion = {
 			keyword_length = 1,
 		},
+		preselect = true,
 		snippet = {
 			expand = function(args)
 				luasnip.lsp_expand(args.body)
@@ -130,7 +131,6 @@ M.config = function()
 			{ name = "luasnip" },
 			{ name = "nvim_lua" },
 			{ name = "path" },
-			{ name = "calc" },
 			{ name = "crates" },
 		},
 		documentation = {
@@ -140,7 +140,6 @@ M.config = function()
 			format = require("pea.plugins.lsp.lsp_kind").setup({
 				menu = {
 					crates = "(Crates)",
-					calc = "(Calc)",
 					nvim_lsp = "(LSP)",
 					path = "(Path)",
 					luasnip = "(Snippet)",
@@ -203,6 +202,7 @@ end
 M.setup = function()
 	M.config()
 
+	require("luasnip/loaders/from_vscode").lazy_load()
 	require("cmp").setup(pea.builtin.cmp)
 end
 

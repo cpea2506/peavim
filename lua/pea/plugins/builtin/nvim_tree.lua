@@ -2,7 +2,10 @@ local M = {}
 
 local default = {
 	vim_setup_opts = {
-		nvim_tree_special_files = "",
+		nvim_tree_special_files = {
+			-- ["Readme.md"] = true,
+			-- ["Cargo.toml"] = true,
+		},
 		vim_tree_git_hl = 1,
 		nvim_tree_quit_on_open = 1,
 		nvim_tree_show_icons = {

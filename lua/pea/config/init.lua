@@ -24,7 +24,12 @@ pea.plugins = {
 	{ "glepnir/dashboard-nvim" },
 	{ "nvim-treesitter/nvim-treesitter" },
 	{ "ray-x/lsp_signature.nvim" },
-	{ "simrat39/rust-tools.nvim" },
+	{ "L3MON4D3/LuaSnip" },
+	{
+		"simrat39/rust-tools.nvim",
+		ft = "rust",
+		after = "nvim-lsp-installer",
+	},
 	{
 
 		"windwp/nvim-autopairs",
@@ -56,8 +61,7 @@ pea.plugins = {
 			})
 
 			-- lazygit toggleterm
-			local Terminal = require("toggleterm.terminal").Terminal
-			local lazygit = Terminal:new({
+			_G.lazygit = require("toggleterm.terminal").Terminal:new({
 				cmd = "lazygit",
 				direction = "float",
 				float_opts = {
@@ -65,23 +69,13 @@ pea.plugins = {
 				},
 			})
 
-			_G.lazygit_toggle = function()
-				lazygit:toggle()
-			end
-
 			pea.utils.key_mapping.set_keymap({
 				normal = {
-					["<C-g>"] = ":lua lazygit_toggle()<CR>",
+					["<C-g>"] = ":lua lazygit:toggle()<CR>",
 				},
 			})
 		end,
-		keys = "<C-t>",
-	},
-	{
-		"L3MON4D3/LuaSnip",
-		config = function()
-			require("luasnip/loaders/from_vscode").lazy_load()
-		end,
+		keys = { "<C-t>", "<C-g>" },
 	},
 	{
 		"hrsh7th/nvim-cmp",
@@ -90,14 +84,13 @@ pea.plugins = {
 			{ "saadparwaiz1/cmp_luasnip", after = "LuaSnip", event = "InsertCharPre" },
 			{ "hrsh7th/cmp-path", event = "InsertCharPre" },
 			{ "hrsh7th/cmp-nvim-lua", ft = "lua", event = "InsertCharPre" },
-			{ "hrsh7th/cmp-calc", event = "InsertCharPre" },
 		},
 	},
 	{
 		"Saecki/crates.nvim",
 		event = { "BufRead Cargo.toml" },
 		config = function()
-			require("pea.plugins.crate").setup()
+			require("pea.plugins.builtin.crate").setup()
 		end,
 	},
 	{
