@@ -1,50 +1,109 @@
 pea.plugins = {
-	{ "mg979/vim-visual-multi" },
+	{ "wbthomason/packer.nvim", opt = true },
+	{ "mg979/vim-visual-multi", keys = "<C-n>" },
+	{ "rafamadriz/friendly-snippets", event = "InsertCharPre" },
+	{ "windwp/nvim-ts-autotag", event = "InsertCharPre" },
 	{ "lukas-reineke/indent-blankline.nvim" },
-	{ "RishabhRD/popfix" },
 	{ "tami5/lspsaga.nvim" },
 	{ "andweeb/presence.nvim" },
-	{ "akinsho/toggleterm.nvim" },
-	{ "wbthomason/packer.nvim" },
-	{ "fratajczak/one-monokai-vim" },
-	{ "rafamadriz/friendly-snippets" },
 	{ "matze/vim-move" },
 	{ "norcalli/nvim-colorizer.lua" },
-	{ "antoinemadec/FixCursorHold.nvim" },
-	{ "windwp/nvim-ts-autotag" },
 	{ "ahmedkhalf/project.nvim" },
 	{ "williamboman/nvim-lsp-installer" },
 	{ "neovim/nvim-lspconfig" },
-	{ "windwp/nvim-autopairs" },
+	{ "nvim-lua/plenary.nvim" },
+	{ "kyazdani42/nvim-web-devicons" },
+	{ "jose-elias-alvarez/null-ls.nvim" },
+	{ "nvim-telescope/telescope.nvim" },
+	{ "kyazdani42/nvim-tree.lua" },
+	{ "nvim-lualine/lualine.nvim" },
 	{ "p00f/nvim-ts-rainbow" },
 	{ "nacro90/numb.nvim" },
 	{ "myusuf3/numbers.vim" },
-	{ "simrat39/rust-tools.nvim" },
+	{ "romgrk/barbar.nvim" },
+	{ "glepnir/dashboard-nvim" },
 	{ "nvim-treesitter/nvim-treesitter" },
-	{ "nvim-treesitter/playground" },
 	{ "ray-x/lsp_signature.nvim" },
+	{ "simrat39/rust-tools.nvim" },
+	{
+
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup({
+				map_cr = true,
+				enable_check_bracket_line = true,
+				ignored_next_char = "[%w%.]",
+				fast_wrap = {
+					map = "<C-w>",
+				},
+			})
+		end,
+		event = "InsertCharPre",
+	},
+	{
+		"akinsho/toggleterm.nvim",
+		config = function()
+			require("toggleterm").setup({
+				hiden_number = true,
+				close_on_exit = true,
+				shade_terminals = false,
+				open_mapping = "<C-t>",
+				direction = "float",
+				float_opts = {
+					windblend = 3,
+					border = "rounded",
+				},
+			})
+
+			-- lazygit toggleterm
+			local Terminal = require("toggleterm.terminal").Terminal
+			local lazygit = Terminal:new({
+				cmd = "lazygit",
+				direction = "float",
+				float_opts = {
+					border = "rounded",
+				},
+			})
+
+			_G.lazygit_toggle = function()
+				lazygit:toggle()
+			end
+
+			pea.utils.key_mapping.set_keymap({
+				normal = {
+					["<C-g>"] = ":lua lazygit_toggle()<CR>",
+				},
+			})
+		end,
+		keys = "<C-t>",
+	},
+	{
+		"L3MON4D3/LuaSnip",
+		config = function()
+			require("luasnip/loaders/from_vscode").lazy_load()
+		end,
+	},
 	{
 		"hrsh7th/nvim-cmp",
 		requires = {
-			{ "L3MON4D3/LuaSnip" },
-			{ "saadparwaiz1/cmp_luasnip" },
-			{ "Saecki/crates.nvim" },
 			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "hrsh7th/cmp-path" },
-			{ "hrsh7th/cmp-nvim-lua" },
-			{ "hrsh7th/cmp-calc" },
-			{ "ray-x/cmp-treesitter" },
+			{ "saadparwaiz1/cmp_luasnip", after = "LuaSnip", event = "InsertCharPre" },
+			{ "hrsh7th/cmp-path", event = "InsertCharPre" },
+			{ "hrsh7th/cmp-nvim-lua", ft = "lua", event = "InsertCharPre" },
+			{ "hrsh7th/cmp-calc", event = "InsertCharPre" },
+			{ "ray-x/cmp-treesitter", event = "InsertCharPre" },
 		},
 	},
 	{
-		"romgrk/barbar.nvim",
-		requires = { "kyazdani42/nvim-web-devicons" },
-	},
-	{
-		"glepnir/dashboard-nvim",
+		"Saecki/crates.nvim",
+		event = { "BufRead Cargo.toml" },
+		config = function()
+			require("crate").setup()
+		end,
 	},
 	{
 		"numToStr/Comment.nvim",
+		keys = { "gcc", "gbc", "gc", "gb" },
 		config = function()
 			require("Comment").setup({
 				ignore = "^$", -- ignore empty line
@@ -52,25 +111,6 @@ pea.plugins = {
 
 			require("Comment").get_config()
 		end,
-	},
-	{
-		"jose-elias-alvarez/null-ls.nvim",
-		requires = {
-			"nvim-lua/plenary.nvim",
-			"neovim/nvim-lspconfig",
-		},
-	},
-	{
-		"nvim-telescope/telescope.nvim",
-		requires = { "nvim-lua/plenary.nvim" },
-	},
-	{
-		"kyazdani42/nvim-tree.lua",
-		requires = { "kyazdani42/nvim-web-devicons" },
-	},
-	{
-		"nvim-lualine/lualine.nvim",
-		requires = { "kyazdani42/nvim-web-devicons" },
 	},
 }
 
@@ -95,45 +135,19 @@ pea.builtin.lsp.disable_fmt = {
 	"rust_analyzer",
 	"tsserver",
 	"jsonls",
+	"stylelint_lsp",
 }
 
 pea.transparent_window = true
 
-require("project_nvim").setup({})
 require("numb").setup({})
+require("project_nvim").setup({})
 require("telescope").load_extension("projects")
-
--- lazygit toggleterm
-local Terminal = require("toggleterm.terminal").Terminal
-local lazygit = Terminal:new({
-	cmd = "lazygit",
-	direction = "float",
-	float_opts = {
-		border = "rounded",
-	},
-})
 
 vim.diagnostic.config({
 	virtual_text = true,
 	underline = false,
 	signs = true,
-})
-
----@diagnostic disable-next-line: lowercase-global
-lazygit_toggle = function()
-	lazygit:toggle()
-end
-
-require("toggleterm").setup({
-	hiden_number = true,
-	close_on_exit = true,
-	shade_terminals = false,
-	open_mapping = "<C-t>",
-	direction = "float",
-	float_opts = {
-		windblend = 3,
-		border = "rounded",
-	},
 })
 
 require("presence"):setup({
@@ -142,15 +156,6 @@ require("presence"):setup({
 	main_image = "file",
 	client_id = "914799712794705961",
 	buttons = true,
-})
-
-require("nvim-autopairs").setup({
-	map_cr = true,
-	enable_check_bracket_line = true,
-	ignored_next_char = "[%w%.]",
-	fast_wrap = {
-		map = "<C-w>",
-	},
 })
 
 require("colorizer").setup({
@@ -207,8 +212,6 @@ pea.keymap = {
 		["<C-b>"] = ":NvimTreeToggle<CR>",
 		["<S-Tab>"] = ":BufferPrevious<CR>",
 		["<C-p>"] = ":Telescope find_files<CR>",
-		["<C-g>"] = ":lua lazygit_toggle()<CR>",
-		["<leader>gr"] = ":TSHighlightCapturesUnderCursor<CR>",
 		["<leader>ft"] = ":lua print(vim.bo.filetype)<CR>",
 		["<leader>fo"] = ":lua vim.lsp.buf.formatting_sync()<CR>",
 	},
