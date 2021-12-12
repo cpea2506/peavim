@@ -45,7 +45,7 @@ M.call_setup = function(modules, dir)
 end
 
 M.extend = function(left, right)
-	return vim.tbl_extend("force", left, right)
+	return vim.tbl_deep_extend("force", left, right)
 end
 
 M.plugin_install = function(plugs)
