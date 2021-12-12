@@ -49,6 +49,7 @@ M.extend = function(left, right)
 end
 
 M.plugin_install = function(plugs)
+	vim.cmd("packadd packer.nvim")
 	local packer = require("packer")
 
 	packer.startup({

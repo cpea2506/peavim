@@ -131,7 +131,6 @@ M.config = function()
 			{ name = "nvim_lua" },
 			{ name = "path" },
 			{ name = "calc" },
-			{ name = "treesitter" },
 			{ name = "crates" },
 		},
 		documentation = {
@@ -204,7 +203,6 @@ end
 M.setup = function()
 	M.config()
 
-	require("luasnip/loaders/from_vscode").lazy_load()
 	require("cmp").setup(pea.builtin.cmp)
 end
 

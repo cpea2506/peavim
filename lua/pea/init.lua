@@ -1,5 +1,4 @@
-_G.vim = vim
-_G.pea = require("pea.config.default")
+pea = require("pea.config.default")
 
 require("pea.config")
 
