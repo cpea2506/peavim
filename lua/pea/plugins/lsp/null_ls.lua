@@ -35,11 +35,9 @@ M.list_active_sources = function(filetype, method)
 end
 
 M.setup = function()
-	null_ls.config({
+	null_ls.setup({
 		sources = config_source(pea.builtin.null_ls.sources),
 	})
-
-	require("lspconfig")["null-ls"].setup({})
 end
 
 return M
