@@ -1,5 +1,6 @@
 local plugins_opts = {
-	mapleader = " ", -- space
+	-- space
+	mapleader = " ",
 
 	-- neovide
 	neovide_cursor_animation_length = 0.12,
@@ -38,7 +39,7 @@ local vim_opts = {
 	colorcolumn = "9999",
 	foldmethod = "manual",
 	clipboard = "unnamedplus",
-	completeopt = { "menuone", "noselect" },
+	completeopt = { "menu", "menuone", "noselect" },
 	lazyredraw = true,
 }
 
@@ -67,7 +68,7 @@ return {
 	setup = function()
 		-- disable unused builtin plugin
 		for _, plugin in pairs(disabled_builtins) do
-			vim.g["loaded_" .. plugin] = false
+			vim.g["loaded_" .. plugin] = 0
 		end
 
 		local func = pea.utils.func

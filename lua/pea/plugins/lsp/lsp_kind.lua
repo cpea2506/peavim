@@ -57,18 +57,13 @@ local kind_order = {
 }
 
 M.symbolic = function(kind)
-	local symbol = M.symbol_map[kind]
-	symbol = symbol and (symbol .. " ") or ""
-
-	return string.format("%s%s", symbol, kind)
+	return string.format("%s%s", kind_icons[kind] .. " ", kind)
 end
 
-function M.init(opts)
-	local symbol_map = kind_icons
-
-	local extend_symbol = pea.utils.func.extend(symbol_map, opts.symbol_map)
-
-	M.symbol_map = (opts and opts.symbol_map and extend_symbol or symbol_map)
+function M.setup(opts)
+	if opts == nil then
+		opts = {}
+	end
 
 	local symbols = {}
 	for i = 1, #kind_order do
@@ -78,19 +73,6 @@ function M.init(opts)
 
 	for k, v in pairs(symbols) do
 		vim.lsp.protocol.CompletionItemKind[k] = v
-	end
-end
-
-M.presets = kind_icons
-M.symbol_map = kind_icons
-
-function M.setup(opts)
-	if opts == nil then
-		opts = {}
-	end
-
-	if opts.preset or opts.symbol_map then
-		M.init(opts)
 	end
 
 	return function(entry, vim_item)

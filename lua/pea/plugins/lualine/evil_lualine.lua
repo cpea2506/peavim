@@ -1,6 +1,6 @@
 local M = {}
 
-local lualine = require("lualine")
+local lualine = require("pea.plugins.lualine")
 
 local colors = {
 	bg = "#212121",
@@ -9,7 +9,7 @@ local colors = {
 	cyan = "#64fcda",
 	darkblue = "#081633",
 	green = "#9ee37d",
-	junglegreen = "#00b295",
+	jungle_green = "#00b295",
 	orange = "#FF8840",
 	violet = "#a9a1e1",
 	magenta = "#ff3f80",
@@ -142,38 +142,9 @@ ins_left({
 })
 
 ins_left({
-	function()
-		local msg = "Inactive"
-		local buf_clients = vim.lsp.buf_get_clients()
-
-		if not next(buf_clients) then
-			return msg
-		end
-
-		local buf_ft = vim.bo.filetype
-		local buf_client_names = {}
-
-		-- add client
-		for _, client in pairs(buf_clients) do
-			if client.name ~= "null-ls" then
-				table.insert(buf_client_names, client.name)
-			end
-		end
-
-		local null_ls = require("pea.plugins.lsp.null_ls")
-
-		-- add formatter
-		local fmt = null_ls.list_active_sources(buf_ft, "FORMATTING")
-		vim.list_extend(buf_client_names, fmt)
-
-		-- add linter
-		local linter = null_ls.list_active_sources(buf_ft, "DIAGNOSTICS")
-		vim.list_extend(buf_client_names, linter)
-
-		return table.concat(buf_client_names, ", ")
-	end,
+	lualine.get_methods_and_server,
 	icon = " LSP:",
-	color = { fg = colors.junglegreen, gui = "bold" },
+	color = { fg = colors.jungle_green, gui = "bold" },
 })
 
 -- Add components to right sections
@@ -223,7 +194,7 @@ ins_right({
 
 -- Now don't forget to initialize lualine
 M.setup = function()
-	lualine.setup(config)
+	require("lualine").setup(config)
 end
 
 return M

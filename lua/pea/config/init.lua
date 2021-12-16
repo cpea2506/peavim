@@ -1,111 +1,3 @@
-pea.plugins = {
-	{ "wbthomason/packer.nvim", opt = true },
-	{ "mg979/vim-visual-multi", keys = "<C-n>" },
-	{ "rafamadriz/friendly-snippets", event = "InsertCharPre" },
-	{ "windwp/nvim-ts-autotag", event = "InsertCharPre" },
-	{ "lukas-reineke/indent-blankline.nvim" },
-	{ "tami5/lspsaga.nvim" },
-	{ "andweeb/presence.nvim" },
-	{ "matze/vim-move" },
-	{ "norcalli/nvim-colorizer.lua" },
-	{ "ahmedkhalf/project.nvim" },
-	{ "williamboman/nvim-lsp-installer" },
-	{ "neovim/nvim-lspconfig" },
-	{ "nvim-lua/plenary.nvim" },
-	{ "kyazdani42/nvim-web-devicons" },
-	{ "jose-elias-alvarez/null-ls.nvim" },
-	{ "nvim-telescope/telescope.nvim" },
-	{ "kyazdani42/nvim-tree.lua" },
-	{ "nvim-lualine/lualine.nvim" },
-	{ "p00f/nvim-ts-rainbow" },
-	{ "nacro90/numb.nvim" },
-	{ "myusuf3/numbers.vim" },
-	{ "romgrk/barbar.nvim" },
-	{ "glepnir/dashboard-nvim" },
-	{ "nvim-treesitter/nvim-treesitter" },
-	{ "ray-x/lsp_signature.nvim" },
-	{ "L3MON4D3/LuaSnip" },
-	{
-		"simrat39/rust-tools.nvim",
-		ft = "rust",
-		after = "nvim-lsp-installer",
-	},
-	{
-
-		"windwp/nvim-autopairs",
-		config = function()
-			require("nvim-autopairs").setup({
-				map_cr = true,
-				enable_check_bracket_line = true,
-				ignored_next_char = "[%w%.]",
-				fast_wrap = {
-					map = "<C-w>",
-				},
-			})
-		end,
-		event = "InsertCharPre",
-	},
-	{
-		"akinsho/toggleterm.nvim",
-		config = function()
-			require("toggleterm").setup({
-				hiden_number = true,
-				close_on_exit = true,
-				shade_terminals = false,
-				open_mapping = "<C-t>",
-				direction = "float",
-				float_opts = {
-					windblend = 3,
-					border = "rounded",
-				},
-			})
-
-			-- lazygit toggleterm
-			_G.lazygit = require("toggleterm.terminal").Terminal:new({
-				cmd = "lazygit",
-				direction = "float",
-				float_opts = {
-					border = "rounded",
-				},
-			})
-
-			pea.utils.key_mapping.set_keymap({
-				normal = {
-					["<C-g>"] = ":lua lazygit:toggle()<CR>",
-				},
-			})
-		end,
-		keys = { "<C-t>", "<C-g>" },
-	},
-	{
-		"hrsh7th/nvim-cmp",
-		requires = {
-			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "saadparwaiz1/cmp_luasnip", after = "LuaSnip", event = "InsertCharPre" },
-			{ "hrsh7th/cmp-path", event = "InsertCharPre" },
-			{ "hrsh7th/cmp-nvim-lua", ft = "lua", event = "InsertCharPre" },
-		},
-	},
-	{
-		"Saecki/crates.nvim",
-		event = { "BufRead Cargo.toml" },
-		config = function()
-			require("pea.plugins.builtin.crate").setup()
-		end,
-	},
-	{
-		"numToStr/Comment.nvim",
-		keys = { "gcc", "gbc", "gc", "gb" },
-		config = function()
-			require("Comment").setup({
-				ignore = "^$", -- ignore empty line
-			})
-
-			require("Comment").get_config()
-		end,
-	},
-}
-
 pea.builtin.null_ls.sources = {
 	formatting = {
 		{ exe = "prettierd" },
@@ -131,6 +23,7 @@ pea.builtin.lsp.disable_fmt = {
 }
 
 pea.transparent_window = true
+pea.builtin.lualine = "evil_lualine"
 
 require("numb").setup({})
 require("project_nvim").setup({})
@@ -171,9 +64,6 @@ require("nvim-treesitter.configs").setup({
 		enable = true,
 		filetypes = {
 			"html",
-			"javascript",
-			"javascriptreact",
-			"typescript",
 			"typescriptreact",
 		},
 	},

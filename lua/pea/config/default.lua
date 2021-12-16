@@ -21,6 +21,7 @@ return {
 		lsp = {
 			disabled_fmt = {},
 		},
+		lualine = "evil_lualine",
 	},
 	utils = require("pea.utils"),
 }

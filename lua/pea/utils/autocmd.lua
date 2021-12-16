@@ -31,8 +31,8 @@ local default = {
 		{ "ColorScheme", "*", "hi CratesNvimPopupTransitive guifg=#E06C75 gui=nocombine" },
 	},
 	packer_on_save = {
-		{ "BufWritePost", "init.lua", "PackerInstall" },
-		{ "BufWritePost", "init.lua", "PackerCompile" },
+		{ "BufWritePost", "init.lua", "source <afile> | PackerInstall" },
+		{ "BufWritePost", "init.lua", "source <afile> | PackerCompile" },
 	},
 }
 

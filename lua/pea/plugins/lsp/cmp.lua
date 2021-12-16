@@ -97,7 +97,9 @@ local function jumpable(dir)
 	end
 end
 
-M.config = function()
+M.setup = function()
+	vim.cmd("packadd nvim-cmp")
+
 	local cmp_ok, cmp = pcall(require, "cmp")
 	if not cmp_ok then
 		return
@@ -108,7 +110,7 @@ M.config = function()
 		return
 	end
 
-	pea.builtin.cmp = {
+	local config = {
 		confirm_opts = {
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
@@ -131,6 +133,7 @@ M.config = function()
 			{ name = "luasnip" },
 			{ name = "nvim_lua" },
 			{ name = "path" },
+			{ name = "buffer" },
 			{ name = "crates" },
 		},
 		documentation = {
@@ -197,13 +200,11 @@ M.config = function()
 			end,
 		},
 	}
-end
 
-M.setup = function()
-	M.config()
+	pea.utils.func.extend(config, pea.builtin.cmp)
 
 	require("luasnip/loaders/from_vscode").lazy_load()
-	require("cmp").setup(pea.builtin.cmp)
+	require("cmp").setup(config)
 end
 
 return M

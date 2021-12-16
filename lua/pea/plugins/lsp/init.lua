@@ -99,6 +99,9 @@ M.setup = function()
 			},
 		},
 	})
+
+	require("pea.plugins.lsp.cmp").setup()
+	require("pea.plugins.lsp.null_ls").setup()
 end
 
 return M

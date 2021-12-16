@@ -97,7 +97,6 @@ theme.load_editor = function()
 		editor.LineNr = { fg = colors.grey }
 		editor.CursorLineNr = { fg = colors.white }
 	end
-
 	return editor
 end
 
@@ -202,7 +201,6 @@ theme.load_lang = function()
 		cssClassNameDot = { fg = colors.pink },
 		cssURL = { fg = colors.orange, style = "underline,italic" },
 	}
-
 	return lang
 end
 
