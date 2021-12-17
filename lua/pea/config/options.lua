@@ -68,7 +68,7 @@ return {
 	setup = function()
 		-- disable unused builtin plugin
 		for _, plugin in pairs(disabled_builtins) do
-			vim.g["loaded_" .. plugin] = 0
+			vim.g["loaded_" .. plugin] = 1
 		end
 
 		local func = pea.utils.func

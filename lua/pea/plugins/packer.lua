@@ -23,9 +23,9 @@ local default_plugin = {
 	{ "ray-x/lsp_signature.nvim" },
 	{ "wbthomason/packer.nvim" },
 	{ "nvim-treesitter/nvim-treesitter" },
+	{ "windwp/nvim-ts-autotag" },
+	{ "rafamadriz/friendly-snippets" },
 	{ "mg979/vim-visual-multi", keys = "<C-n>" },
-	{ "rafamadriz/friendly-snippets", event = "InsertCharPre" },
-	{ "windwp/nvim-ts-autotag", event = "InsertCharPre" },
 	{
 		"simrat39/rust-tools.nvim",
 		ft = "rust",
@@ -84,14 +84,17 @@ local default_plugin = {
 			{ "L3MON4D3/LuaSnip" },
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
-			{ "saadparwaiz1/cmp_luasnip", after = { "LuaSnip", "nvim-cmp" } },
+			{
+				"saadparwaiz1/cmp_luasnip",
+				after = { "LuaSnip", "nvim-cmp" },
+			},
 			{ "hrsh7th/cmp-path", after = "nvim-cmp" },
 			{ "hrsh7th/cmp-nvim-lua", after = "nvim-cmp", ft = "lua" },
 		},
 		config = function()
 			require("pea.plugins.lsp.cmp").setup()
 		end,
-		event = "InsertEnter",
+		event = "InsertEnter *",
 	},
 	{
 		"Saecki/crates.nvim",
@@ -107,6 +110,7 @@ local default_plugin = {
 				ignore = "^$", -- ignore empty line
 			})
 		end,
+		keys = { "gc", "gb" },
 	},
 }
 

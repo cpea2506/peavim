@@ -1,9 +1,6 @@
 local M = {}
 
 local default = {
-	cmp = {
-		{ "ColorScheme", "*", "hi CmpItemDeprecated guifg=#E06C75 gui=nocombine" },
-	},
 	indent_blankline_color = {
 		{ "ColorScheme", "*", "hi IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine" },
 		{ "ColorScheme", "*", "hi IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine" },

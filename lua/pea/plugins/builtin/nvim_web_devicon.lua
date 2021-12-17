@@ -111,30 +111,10 @@ local custom_icons = {
 		color = "#42a5f5",
 		name = "Lua",
 	},
-	pyc = {
-		icon = "",
-		color = "#3c78aa",
-		name = "Pyc",
-	},
-	pyd = {
-		icon = "",
-		color = "#3c78aa",
-		name = "Pyd",
-	},
-	pyo = {
-		icon = "",
-		color = "#3c78aa",
-		name = "Pyo",
-	},
 	md = {
 		icon = "",
 		color = "#ffffff",
 		name = "Md",
-	},
-	py = {
-		icon = "",
-		color = "#3c78aa",
-		name = "Python",
 	},
 	rs = {
 		icon = "",

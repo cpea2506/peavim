@@ -14,7 +14,6 @@ return {
 	},
 	builtin = {
 		dashboard = {},
-		cmp = {},
 		null_ls = {
 			sources = {},
 		},

@@ -111,14 +111,12 @@ M.setup = function()
 	end
 
 	local config = {
-		confirm_opts = {
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
-		},
 		completion = {
 			keyword_length = 1,
 		},
-		preselect = true,
+		confirmation = {
+			default_behavior = cmp.ConfirmBehavior.Replace,
+		},
 		snippet = {
 			expand = function(args)
 				luasnip.lsp_expand(args.body)
@@ -142,11 +140,12 @@ M.setup = function()
 		formatting = {
 			format = require("pea.plugins.lsp.lsp_kind").setup({
 				menu = {
-					crates = "(Crates)",
-					nvim_lsp = "(LSP)",
-					path = "(Path)",
-					luasnip = "(Snippet)",
-					nvim_lua = "(Lua)",
+					path = "[Path]",
+					nvim_lsp = "[LSP]",
+					nvim_lua = "[Lua]",
+					buffer = "[Buffer]",
+					crates = "[Crates]",
+					luasnip = "[Snippet]",
 				},
 			}),
 		},
@@ -181,29 +180,18 @@ M.setup = function()
 				"i",
 				"s",
 			}),
-			["<CR>"] = cmp.mapping(function(fallback)
-				if cmp.visible() and cmp.confirm(pea.builtin.cmp.confirm_opts) then
-					return
-				end
-
-				if jumpable() then
-					if not luasnip.jump(1) then
-						fallback()
-					end
-				else
-					fallback()
-				end
-			end),
+			["<CR>"] = cmp.mapping(cmp.mapping.confirm({
+				select = true,
+				behavior = cmp.ConfirmBehavior.Replace,
+			})),
 			["<C-c>"] = function(fallback)
-				require("cmp").close()
+				cmp.close()
 				fallback()
 			end,
 		},
 	}
 
-	pea.utils.func.extend(config, pea.builtin.cmp)
-
-	require("luasnip/loaders/from_vscode").lazy_load()
+	require("luasnip.loaders.from_vscode").lazy_load()
 	require("cmp").setup(config)
 end
 
