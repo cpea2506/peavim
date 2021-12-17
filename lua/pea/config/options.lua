@@ -5,6 +5,7 @@ local plugins_opts = {
 	-- neovide
 	neovide_cursor_animation_length = 0.12,
 	neovide_cursor_vfx_mode = "sonicboom",
+	neovide_transparency = 0.7,
 
 	-- vim move
 	move_key_modifier = "C",

@@ -91,11 +91,7 @@ M.setup = function()
 	end
 
 	if pea.transparent_window then
-		if vim.g.neovide then
-			vim.g.one_monokai_no_bg = false
-		else
-			table.insert(autocmd, default_with_cond.transparent_window)
-		end
+		table.insert(autocmd, default_with_cond.transparent_window)
 	end
 
 	if pea.yank_highlight then
