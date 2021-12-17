@@ -200,6 +200,22 @@ theme.load_lang = function()
 		cssBraces = { fg = colors.white },
 		cssClassNameDot = { fg = colors.pink },
 		cssURL = { fg = colors.orange, style = "underline,italic" },
+
+		-- nvim-cmp
+		CmpItemAbbrDeprecated = { fg = colors.lightgrey, style = "strikethrough" },
+		CmpItemAbbrMatch = { fg = colors.aqua },
+
+		CmpItemKindClass = { fg = colors.yellow },
+		CmpItemKindModule = { fg = colors.yellow },
+		CmpItemKindInterface = { fg = colors.yellow },
+		CmpItemKindVariable = { fg = colors.cyan },
+		CmpItemKindConstant = { fg = colors.cyan },
+		CmpItemKindText = { fg = colors.milk },
+		CmpItemKindUnit = { fg = colors.milk },
+		CmpItemKindMethod = { fg = colors.pink },
+		CmpItemKindFunction = { fg = colors.green },
+		CmpItemKindKeyword = { fg = colors.lightgrey },
+		CmpItemKindProperty = { fg = colors.lightgrey },
 	}
 	return lang
 end
