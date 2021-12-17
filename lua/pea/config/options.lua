@@ -5,7 +5,7 @@ local plugins_opts = {
 	-- neovide
 	neovide_cursor_animation_length = 0.12,
 	neovide_cursor_vfx_mode = "sonicboom",
-	neovide_transparency = 0.7,
+	neovide_transparency = 0.6,
 
 	-- vim move
 	move_key_modifier = "C",
@@ -36,6 +36,7 @@ local vim_opts = {
 	updatetime = 300,
 	sidescrolloff = 8,
 	signcolumn = "yes",
+	guifont = "JetBrainsMonoMedium Nerd Font:h12",
 	fillchars = "eob: ",
 	colorcolumn = "9999",
 	foldmethod = "manual",
