@@ -182,7 +182,6 @@ M.setup = function()
 			}),
 			["<CR>"] = cmp.mapping(cmp.mapping.confirm({
 				select = true,
-				behavior = cmp.ConfirmBehavior.Replace,
 			})),
 			["<C-c>"] = function(fallback)
 				cmp.close()
