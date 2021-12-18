@@ -31,7 +31,7 @@ require("telescope").load_extension("projects")
 
 vim.diagnostic.config({
 	virtual_text = true,
-	underline = false,
+	underline = true,
 	signs = true,
 	update_in_insert = true,
 })

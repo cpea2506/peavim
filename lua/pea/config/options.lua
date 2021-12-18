@@ -19,17 +19,18 @@ local plugins_opts = {
 
 local vim_opts = {
 	wrap = true,
-	linebreak = true,
 	list = false,
 	hidden = true,
 	hlsearch = true,
 	swapfile = false,
 	smartcase = true,
+	linebreak = true,
+	lazyredraw = true,
 	smartindent = true,
 	autoindent = true,
-	undofile = true,
 	showmode = false,
 	showcmd = false,
+	undofile = true,
 	title = true,
 	tabstop = 4,
 	scrolloff = 8,
@@ -39,13 +40,12 @@ local vim_opts = {
 	updatetime = 300,
 	sidescrolloff = 8,
 	signcolumn = "yes",
-	guifont = "JetBrainsMonoMedium Nerd Font:h12",
 	fillchars = "eob: ",
 	colorcolumn = "9999",
 	foldmethod = "manual",
 	clipboard = "unnamedplus",
+	guifont = "JetBrainsMonoMedium Nerd Font:h12",
 	completeopt = { "menu", "menuone", "noselect" },
-	lazyredraw = true,
 }
 
 local disabled_builtins = {
