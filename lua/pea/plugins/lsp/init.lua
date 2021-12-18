@@ -57,10 +57,9 @@ M.setup = function()
 			elseif server.name == "stylelint_lsp" then
 				opts.filetypes = { "css", "scss" }
 			elseif server.name == "sumneko_lua" then
-				local system_name = "macOS"
 				local nvim_path = "/Users/CPea2506/.local/share/nvim"
 				local sumneko_root_path = nvim_path .. "/lsp_servers/sumneko_lua/extension/server"
-				local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
+				local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
 				opts.cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" }
 				opts.settings = {
 					Lua = {
