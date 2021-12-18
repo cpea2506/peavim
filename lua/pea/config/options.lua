@@ -18,6 +18,9 @@ local plugins_opts = {
 }
 
 local vim_opts = {
+	wrap = true,
+	linebreak = true,
+	list = false,
 	hidden = true,
 	hlsearch = true,
 	swapfile = false,
