@@ -1,32 +1,6 @@
 local M = {}
 
 local default = {
-	indent_blankline_color = {
-		{ "ColorScheme", "*", "hi IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine" },
-		{ "ColorScheme", "*", "hi IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine" },
-		{ "ColorScheme", "*", "hi IndentBlanklineIndent3 guifg=#98C379 gui=nocombine" },
-		{ "ColorScheme", "*", "hi IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine" },
-		{ "ColorScheme", "*", "hi IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine" },
-		{ "ColorScheme", "*", "hi IndentBlanklineIndent6 guifg=#C678DD gui=nocombine" },
-	},
-	crates = {
-		{ "ColorScheme", "*", "hi CratesNvimNoMatch guifg=#E06C75 gui=nocombine" },
-		{ "ColorScheme", "*", "hi CratesNvimError guifg=#f75f5f gui=nocombine" },
-		{ "ColorScheme", "*", "hi CratesNvimUpgrade guifg=#E5C07B gui=nocombine" },
-		{ "ColorScheme", "*", "hi CratesNvimVersion guifg=#98C379 gui=nocombine" },
-		{ "ColorScheme", "*", "hi CratesNvimPreRelease guifg=#56B6C2 gui=nocombine" },
-		{ "ColorScheme", "*", "hi CratesNvimYanked guifg=#f75f5f gui=nocombine" },
-		{ "ColorScheme", "*", "hi CratesNvimLoading guifg=#C678DD gui=nocombine" },
-	},
-	popup_crates = {
-		{ "ColorScheme", "*", "hi CratesNvimPopupTitle guifg=#E06C75 gui=nocombine" },
-		{ "ColorScheme", "*", "hi CratesNvimPopupVersion guifg=#98C379 gui=nocombine" },
-		{ "ColorScheme", "*", "hi CratesNvimPopupPreRelease guifg=#56B6C2 gui=nocombine" },
-		{ "ColorScheme", "*", "hi CratesNvimPopupYanked guifg=#DA2C43 gui=nocombine" },
-		{ "ColorScheme", "*", "hi CratesNvimPopupFeature guifg=#61AFEF  gui=nocombine" },
-		{ "ColorScheme", "*", "hi CratesNvimPopupEnabled guifg=#98C379 gui=nocombine" },
-		{ "ColorScheme", "*", "hi CratesNvimPopupTransitive guifg=#E06C75 gui=nocombine" },
-	},
 	packer_on_save = {
 		{ "BufWritePost", "init.lua", "source <afile> | PackerInstall" },
 		{ "BufWritePost", "init.lua", "source <afile> | PackerCompile" },
