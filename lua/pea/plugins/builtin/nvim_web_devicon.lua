@@ -21,6 +21,11 @@ local custom_icons = {
 		color = "#3172bc",
 		name = "Ts",
 	},
+	toml = {
+		icon = "[T]",
+		color = "#ffffff",
+		name = "Toml",
+	},
 	js = {
 		icon = "",
 		color = "#e7d54c",
