@@ -133,49 +133,52 @@ M.setup = function()
 		})
 	end
 
-	local _, packer = pcall(require, "packer")
+	local packer = require("pea.utils.func").prequire("packer")
 
-	packer.startup({
-		function(use)
-			for _, plug in pairs(plugins) do
-				use(plug)
-			end
+	if not packer then
+		return
+	end
 
-			if packer_bootstrap then
-				require("packer").sync()
-			end
-		end,
-		config = {
-			package_root = package_root,
-			compile_path = compile_path,
-			plugin_package = "packer",
-			max_jobs = 50,
-			auto_clean = true,
-			compile_on_sync = true,
-			disable_commands = false,
-			opt_default = false,
-			transitive_opt = true,
-			transitive_disable = true,
-			auto_reload_compiled = true,
-			git = {
-				subcommands = {
-					clone_timeout = 300,
-					fetch = "fetch --no-tags --no-recurse-submodules --update-shallow --progress",
-				},
-			},
-			display = {
-				open_fn = function()
-					return require("packer.util").float({
-						border = "rounded",
-					})
-				end,
-			},
-			profile = {
-				enable = true,
-				threshold = 1,
+	packer.init({
+		package_root = package_root,
+		compile_path = compile_path,
+		plugin_package = "packer",
+		max_jobs = 50,
+		auto_clean = true,
+		compile_on_sync = true,
+		disable_commands = false,
+		opt_default = false,
+		transitive_opt = true,
+		transitive_disable = true,
+		auto_reload_compiled = true,
+		git = {
+			subcommands = {
+				clone_timeout = 300,
+				fetch = "fetch --no-tags --no-recurse-submodules --update-shallow --progress",
 			},
 		},
+		display = {
+			open_fn = function()
+				return require("packer.util").float({
+					border = "rounded",
+				})
+			end,
+		},
+		profile = {
+			enable = true,
+			threshold = 1,
+		},
 	})
+
+	packer.startup(function(use)
+		for _, plug in pairs(plugins) do
+			use(plug)
+		end
+
+		if packer_bootstrap then
+			require("packer").sync()
+		end
+	end)
 end
 
 return M
