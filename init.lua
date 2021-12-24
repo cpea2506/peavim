@@ -1,4 +1,4 @@
-require("pea.plugins.packer").setup()
+require("pea.config.packer").setup()
 
 require("pea.utils.func").call_setup({
 	"config.default",
