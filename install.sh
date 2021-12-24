@@ -49,6 +49,9 @@ function setup_pvim() {
 }
 
 function clone_pvim() {
+  # check if pvim has existed
+  [ -d "$CONFIG_DIR" ] && rm -rf $CONFIG_DIR
+
   msg "Cloning PeaVim configuration"
   if ! git clone \
     --depth 1 "git@github.com:cpea2506/peavim.git" "$CONFIG_DIR"; then
