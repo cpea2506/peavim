@@ -14,17 +14,17 @@ local plugins = {
 	{ "nvim-telescope/telescope.nvim" },
 	{ "kyazdani42/nvim-tree.lua" },
 	{ "nvim-lualine/lualine.nvim" },
-	{ "p00f/nvim-ts-rainbow" },
 	{ "nacro90/numb.nvim" },
 	{ "myusuf3/numbers.vim" },
 	{ "romgrk/barbar.nvim" },
 	{ "glepnir/dashboard-nvim" },
 	{ "ray-x/lsp_signature.nvim" },
-	{ "nvim-treesitter/nvim-treesitter" },
-	{ "windwp/nvim-ts-autotag" },
 	{ "rafamadriz/friendly-snippets" },
 	{ "L3MON4D3/LuaSnip" },
 	{ "hrsh7th/cmp-nvim-lsp" },
+	{ "nvim-treesitter/nvim-treesitter" },
+	{ "p00f/nvim-ts-rainbow", after = "nvim-treesitter" },
+	{ "windwp/nvim-ts-autotag", after = "nvim-treesitter" },
 	{ "lukas-reineke/indent-blankline.nvim" },
 	{ "mg979/vim-visual-multi", keys = "<C-n>" },
 	{ "wbthomason/packer.nvim" },
@@ -131,6 +131,7 @@ M.setup = function()
 			"https://github.com/wbthomason/packer.nvim",
 			install_path,
 		})
+		vim.cmd("packadd packer.nvim")
 	end
 
 	local _, packer = pcall(require, "packer")

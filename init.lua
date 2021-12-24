@@ -1,6 +1,7 @@
+require("pea.plugins.packer").setup()
+
 require("pea.utils.func").call_setup({
 	"config.default",
-	"config.packer",
 	"utils.autocmd",
 	"utils.key_mapping",
 	"plugins",
