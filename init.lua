@@ -4,7 +4,7 @@ require("pea.utils.func").call_setup({
 	"config.default",
 	"utils.autocmd",
 	"utils.key_mapping",
-	"plugins",
+	-- "plugins",
 }, "pea")
 
 require("pea.config")
