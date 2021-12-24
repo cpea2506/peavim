@@ -13,7 +13,7 @@ declare -r BASE_DIR="${BASE_DIR:-"$RUNTIME_DIR/pvim"}"
 function remove_old_cache_files() {
   local packer_cache="$CONFIG_DIR/plugin/packer_compiled.lua"
   if [ -e "$packer_cache" ]; then
-    msg "Removing old packer cache file"
+    echo "Removing old packer cache file"
     rm -f "$packer_cache"
   fi
 }
@@ -36,7 +36,7 @@ function setup_pvim() {
 
   remove_old_cache_files
 
-  msg "Installing Peavim shim"
+  echo "Installing Peavim shim"
 
   setup_shim
 
@@ -50,7 +50,7 @@ function setup_pvim() {
 }
 
 function clone_pvim() {
-  msg "Cloning PeaVim configuration"
+  echo "Cloning PeaVim configuration"
   if ! git clone \
     --depth 1 "https://github.com/peavim.git" "$BASE_DIR"; then
     echo "Failed to clone repository. Installation failed."
