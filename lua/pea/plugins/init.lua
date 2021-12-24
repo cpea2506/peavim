@@ -2,7 +2,7 @@ return {
 	setup = function()
 		local func = require("pea.utils.func")
 
-		local default_opts = {
+		local opts = {
 			-- space
 			mapleader = " ",
 
@@ -21,10 +21,9 @@ return {
 			VM_mouse_mappings = 1,
 		}
 
-		local builtin_plugins = { "packer", "builtin", "lsp", "lualine" }
-		local plugins_extend = func.extend(default_opts, pea.plugins_opts)
+		local builtin_plugins = { "builtin", "lsp", "lualine" }
 
 		func.call_setup(builtin_plugins)
-		func.set_plugins_options(plugins_extend)
+		func.set_plugins_options(opts)
 	end,
 }

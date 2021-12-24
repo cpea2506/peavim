@@ -36,7 +36,19 @@ end
 
 M.setup = function()
 	null_ls.setup({
-		sources = config_source(pea.builtin.null_ls.sources),
+		sources = config_source({
+			formatting = {
+				{ exe = "prettierd" },
+				{ exe = "rustfmt" },
+				{ exe = "black" },
+				{ exe = "stylua" },
+			},
+			diagnostics = {
+				{ exe = "flake8" },
+				{ exe = "eslint_d" },
+				{ exe = "stylelint" },
+			},
+		}),
 	})
 end
 

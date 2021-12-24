@@ -61,9 +61,13 @@ return {
 			vim.g["loaded_" .. plugin] = 1
 		end
 
-		local func = require("pea.utils.func")
-		local vim_extend = func.extend(default_opts, pea.vim_opts)
+		vim.diagnostic.config({
+			virtual_text = true,
+			underline = true,
+			signs = true,
+			update_in_insert = true,
+		})
 
-		func.set_vim_options(vim_extend)
+		require("pea.utils.func").set_vim_options(default_opts)
 	end,
 }

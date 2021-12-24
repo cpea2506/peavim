@@ -19,8 +19,8 @@ local align_center = function(lines, alignment)
 	return output
 end
 
-M.config = function()
-	local config_path = "~/.config/nvim/lua/pea/init.lua"
+M.setup = function()
+	local config_path = "~/.config/nvim/lua/pea/config/init.lua"
 	local packer_path = "~/.local/share/nvim/site/pack/packer/start"
 	local num_plugins_loaded = #vim.fn.globpath(packer_path, "*", 0, 1)
 	local name = "PeaVim"
@@ -30,9 +30,7 @@ M.config = function()
 		"Let me show you what is the true text editor!",
 	}
 
-	vim.g.dashboard_preview_file_height = 12
-	vim.g.dashboard_preview_file_width = 80
-	pea.builtin.dashboard = {
+	local config = {
 		dashboard_custom_header = {
 			"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
 			"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⡿⣟⣶⣿⣧⣿⣿⣦⢿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
@@ -78,12 +76,7 @@ M.config = function()
 		},
 		dashboard_custom_footer = align_center(footer, 0.5),
 	}
-end
-
-M.setup = function()
-	M.config()
-
-	require("pea.utils.func").set_plugins_options(pea.builtin.dashboard)
+	require("pea.utils.func").set_plugins_options(config)
 end
 
 return M

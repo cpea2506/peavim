@@ -1,6 +1,6 @@
 local M = {}
 
-local default_plugin = {
+local plugins = {
 	{ "tami5/lspsaga.nvim" },
 	{ "andweeb/presence.nvim" },
 	{ "matze/vim-move" },
@@ -133,8 +133,6 @@ M.setup = function()
 
 	vim.cmd("packadd packer.nvim")
 	local _, packer = pcall(require, "packer")
-
-	local plugins = vim.list_extend(default_plugin, pea.plugins)
 
 	packer.startup({
 		function(use)

@@ -70,9 +70,7 @@ M.setup = function()
 		},
 	}
 
-	local telescope_extend = require("pea.utils.func").extend(config, pea.builtin.telescope)
-
-	require("telescope").setup(telescope_extend)
+	require("telescope").setup(config)
 	require("telescope").load_extension("projects")
 end
 

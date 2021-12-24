@@ -17,7 +17,23 @@ M.set_keymap = function(keys)
 end
 
 M.setup = function()
-	M.set_keymap(pea.keymap)
+	local keymap = {
+		normal = {
+			["<C-s>"] = ":w<CR>",
+			["<Tab>"] = ":BufferNext<CR>",
+			["<C-e>"] = ":BufferClose<CR>",
+			["<C-b>"] = ":NvimTreeToggle<CR>",
+			["<S-Tab>"] = ":BufferPrevious<CR>",
+			["<C-p>"] = ":Telescope find_files<CR>",
+			["<leader>ft"] = ":lua print(vim.bo.filetype)<CR>",
+			["<leader>fo"] = ":lua vim.lsp.buf.formatting_sync()<CR>",
+		},
+		visual = {
+			["<C-s>"] = ":w!<CR>",
+		},
+	}
+
+	M.set_keymap(keymap)
 end
 
 return M

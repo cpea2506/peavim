@@ -23,7 +23,14 @@ local on_attach = function(client, _)
 	-- for code action,.diagnostics..
 	call_setup({ "saga", "signatures" })
 
-	for _, server in pairs(pea.builtin.lsp.disable_fmt) do
+	local disable_fmt = {
+		"rust_analyzer",
+		"tsserver",
+		"jsonls",
+		"stylelint_lsp",
+	}
+
+	for _, server in pairs(disable_fmt) do
 		if client.name == server then
 			client.resolved_capabilities.document_formatting = false
 			client.resolved_capabilities.document_range_formatting = false

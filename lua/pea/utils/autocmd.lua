@@ -1,13 +1,10 @@
 local M = {}
 
-local default = {
+local config = {
 	packer_on_save = {
 		{ "BufWritePost", "init.lua", "PackerInstall" },
 		{ "BufWritePost", "init.lua", "PackerCompile" },
 	},
-}
-
-local default_with_cond = {
 	format_on_save = {
 		{ "BufWritePre", "*", "lua vim.lsp.buf.formatting_sync()" },
 	},
@@ -32,9 +29,6 @@ local default_with_cond = {
 
 M.define_augroups = function(groups)
 	local cmd = vim.cmd
-	--    1. Trigger
-	--    2. Pattern
-	--    3. Text
 	for name, definitions in pairs(groups) do
 		cmd("augroup " .. name)
 		cmd("autocmd!")
@@ -58,27 +52,7 @@ M.load_auto_commands = function(commands)
 end
 
 M.setup = function()
-	local autocmd = {}
-
-	if pea.format_on_save then
-		table.insert(autocmd, default_with_cond.format_on_save)
-	end
-
-	if pea.transparent_window then
-		table.insert(autocmd, default_with_cond.transparent_window)
-	end
-
-	if pea.yank_highlight then
-		table.insert(autocmd, default_with_cond.yank_highlight)
-	end
-
-	for _, cmd in pairs(default) do
-		table.insert(autocmd, cmd)
-	end
-
-	table.insert(autocmd, pea.autocmd)
-
-	M.load_auto_commands(autocmd)
+	M.load_auto_commands(config)
 end
 
 return M

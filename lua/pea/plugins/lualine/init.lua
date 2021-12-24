@@ -32,9 +32,8 @@ M.get_methods_and_server = function()
 end
 
 M.setup = function()
-	local dir = "pea.plugins.lualine."
-
-	require(dir .. pea.builtin.lualine).setup()
+	local theme = "evil_lualine"
+	require("pea.plugins.lualine." .. theme).setup()
 end
 
 return M
