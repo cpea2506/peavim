@@ -25,7 +25,7 @@ git clone git@github.com:cpea2506/peavim.git ~/.config/nvim && cd ~/.config/nvim
 After that, in your terminal: 
 
 ```zsh
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+nvim +PackerSync
 ```
 
 Maybe some errors would occur. But don't worry, just press `Return` until an installation popup appears.
