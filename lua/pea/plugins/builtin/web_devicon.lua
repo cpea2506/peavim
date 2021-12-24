@@ -18,7 +18,7 @@ local custom_icons = {
 	},
 	ts = {
 		icon = "ﯤ",
-		color = "#3172bc",
+		color = "#3178c6",
 		name = "Ts",
 	},
 	toml = {

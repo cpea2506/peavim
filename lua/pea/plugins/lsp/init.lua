@@ -1,5 +1,9 @@
 local M = {}
 
+local call_setup = function(...)
+	require("pea.utils.func").call_setup(..., "pea.plugins.lsp")
+end
+
 local capabilities = function()
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 	capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -16,8 +20,8 @@ local capabilities = function()
 end
 
 local on_attach = function(client, _)
-	require("pea.plugins.lsp.lsp_saga").setup() -- for code action,.diagnostics..
-	require("pea.plugins.lsp.lsp_signatures").setup()
+	-- for code action,.diagnostics..
+	call_setup({ "saga", "signatures" })
 
 	for _, server in pairs(pea.builtin.lsp.disable_fmt) do
 		if client.name == server then
@@ -39,7 +43,7 @@ M.setup = function()
 		if server.name == "rust_analyzer" then
 			vim.cmd("packadd rust-tools.nvim")
 			require("rust-tools").setup({
-				server = pea.utils.func.extend(server:get_default_options(), opts, {
+				server = require("pea.utils.func").extend(server:get_default_options(), opts, {
 					settings = {
 						["rust-analyzer"] = {
 							checkOnSave = {
@@ -64,7 +68,6 @@ M.setup = function()
 				opts.settings = {
 					Lua = {
 						runtime = {
-							version = "5.4.3",
 							path = vim.split(package.path, ";"),
 						},
 						diagnostics = {
@@ -99,8 +102,7 @@ M.setup = function()
 		},
 	})
 
-	require("pea.plugins.lsp.cmp").setup()
-	require("pea.plugins.lsp.null_ls").setup()
+	call_setup({ "comp", "null_ls" })
 end
 
 return M

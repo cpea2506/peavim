@@ -44,8 +44,9 @@ M.call_setup = function(modules, dir)
 	end
 end
 
-M.extend = function(left, right)
-	return vim.tbl_deep_extend("force", left, right)
+M.extend = function(left, right, ...)
+	local another = ... or {}
+	return vim.tbl_deep_extend("force", left, right, unpack(another))
 end
 
 return M

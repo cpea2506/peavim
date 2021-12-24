@@ -2,20 +2,20 @@ local M = {}
 
 local default = {
 	packer_on_save = {
-		{ "BufWritePost", "init.lua", "source <afile> | PackerInstall" },
-		{ "BufWritePost", "init.lua", "source <afile> | PackerCompile" },
+		{ "BufWritePost", "init.lua", "PackerInstall" },
+		{ "BufWritePost", "init.lua", "PackerCompile" },
 	},
 }
 
 local default_with_cond = {
 	format_on_save = {
-		{ "BufWritePre", "*", ":lua vim.lsp.buf.formatting_sync()" },
+		{ "BufWritePre", "*", "lua vim.lsp.buf.formatting_sync()" },
 	},
 	transparent_window = {
 		{ "ColorScheme", "*", "hi Normal guibg=none" },
 		{ "ColorScheme", "*", "hi SignColumn guibg=none" },
-		{ "ColorScheme", "*", "hi  LineNr guibg=none" },
-		{ "ColorScheme", "*", "hi CursorLineNr guibg=none" },
+		{ "ColorScheme", "*", "hi LineNr guibg=none" },
+		{ "ColorScheme", "*", "hi CursorLineNr guifg=#abb2bf guibg=none" },
 		{ "ColorScheme", "*", "hi NormalNC guibg=none" },
 		{ "ColorScheme", "*", "hi MsgArea guibg=none" },
 		{ "ColorScheme", "*", "hi TelescopeBorder guibg=none" },
@@ -48,7 +48,7 @@ M.define_augroups = function(groups)
 end
 
 M.load_auto_commands = function(commands)
-	local autocmd = pea.utils.autocmd
+	local autocmd = require("pea.utils.autocmd")
 
 	for name, command in pairs(commands) do
 		autocmd.define_augroups({

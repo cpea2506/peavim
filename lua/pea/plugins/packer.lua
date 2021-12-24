@@ -1,7 +1,6 @@
 local M = {}
 
 local default_plugin = {
-	{ "lukas-reineke/indent-blankline.nvim" },
 	{ "tami5/lspsaga.nvim" },
 	{ "andweeb/presence.nvim" },
 	{ "matze/vim-move" },
@@ -21,11 +20,14 @@ local default_plugin = {
 	{ "romgrk/barbar.nvim" },
 	{ "glepnir/dashboard-nvim" },
 	{ "ray-x/lsp_signature.nvim" },
-	{ "wbthomason/packer.nvim" },
 	{ "nvim-treesitter/nvim-treesitter" },
 	{ "windwp/nvim-ts-autotag" },
 	{ "rafamadriz/friendly-snippets" },
+	{ "L3MON4D3/LuaSnip" },
+	{ "hrsh7th/cmp-nvim-lsp" },
+	{ "lukas-reineke/indent-blankline.nvim" },
 	{ "mg979/vim-visual-multi", keys = "<C-n>" },
+	{ "wbthomason/packer.nvim", opt = true },
 	{
 		"simrat39/rust-tools.nvim",
 		ft = "rust",
@@ -70,7 +72,7 @@ local default_plugin = {
 				},
 			})
 
-			pea.utils.key_mapping.set_keymap({
+			require("pea.utils.key_mapping").set_keymap({
 				normal = {
 					["<C-g>"] = ":lua lazygit:toggle()<CR>",
 				},
@@ -81,20 +83,17 @@ local default_plugin = {
 	{
 		"hrsh7th/nvim-cmp",
 		requires = {
-			{ "L3MON4D3/LuaSnip" },
-			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
 			{
 				"saadparwaiz1/cmp_luasnip",
-				after = { "LuaSnip", "nvim-cmp" },
+				after = { "nvim-cmp", "LuaSnip", event = "InsertEnter *" },
 			},
-			{ "hrsh7th/cmp-path", after = "nvim-cmp" },
-			{ "hrsh7th/cmp-nvim-lua", after = "nvim-cmp", ft = "lua" },
+			{ "hrsh7th/cmp-buffer", after = "nvim-cmp", event = "InsertEnter *" },
+			{ "hrsh7th/cmp-path", after = "nvim-cmp", event = "InsertEnter *" },
+			{ "hrsh7th/cmp-nvim-lua", after = "nvim-cmp", ft = "lua", event = "InsertEnter *" },
 		},
 		config = function()
-			require("pea.plugins.lsp.cmp").setup()
+			require("pea.plugins.lsp.comp").setup()
 		end,
-		event = "InsertEnter *",
 	},
 	{
 		"Saecki/crates.nvim",
@@ -117,11 +116,9 @@ local default_plugin = {
 M.setup = function()
 	local fn = vim.fn
 	local packer_bootstrap = nil
-	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+	local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
 	local compile_path = "/Users/CPea2506/.config/nvim/plugin/packer_compiled.lua"
 	local package_root = fn.stdpath("data") .. "/site/pack"
-
-	local plugins = vim.list_extend(default_plugin, pea.plugins)
 
 	if fn.empty(fn.glob(install_path)) > 0 then
 		packer_bootstrap = fn.system({
@@ -132,10 +129,12 @@ M.setup = function()
 			"https://github.com/wbthomason/packer.nvim",
 			install_path,
 		})
-		vim.cmd("packadd packer.nvim")
 	end
 
+	vim.cmd("packadd packer.nvim")
 	local _, packer = pcall(require, "packer")
+
+	local plugins = vim.list_extend(default_plugin, pea.plugins)
 
 	packer.startup({
 		function(use)

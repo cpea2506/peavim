@@ -115,7 +115,7 @@ M.setup = function()
 			keyword_length = 1,
 		},
 		confirmation = {
-			default_behavior = cmp.ConfirmBehavior.Replace,
+			default_behavior = cmp.ConfirmBehavior.Insert,
 		},
 		snippet = {
 			expand = function(args)
@@ -138,7 +138,7 @@ M.setup = function()
 			border = "rounded",
 		},
 		formatting = {
-			format = require("pea.plugins.lsp.lsp_kind").setup({
+			format = require("pea.plugins.lsp.kind").setup({
 				menu = {
 					path = "[Path]",
 					nvim_lsp = "[LSP]",

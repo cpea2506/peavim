@@ -1,11 +1,8 @@
 local M = {}
 
 local default = {
-	vim_setup_opts = {
-		nvim_tree_special_files = {
-			-- ["Readme.md"] = true,
-			-- ["Cargo.toml"] = true,
-		},
+	vim_opts = {
+		nvim_tree_special_files = {},
 		vim_tree_git_hl = 1,
 		nvim_tree_quit_on_open = 1,
 		nvim_tree_show_icons = {
@@ -37,7 +34,7 @@ local default = {
 			},
 		},
 	},
-	lua_setup_opts = {
+	lua_opts = {
 		disable_netrw = true,
 		hijack_netrw = true,
 		open_on_tab = false,
@@ -75,9 +72,9 @@ local default = {
 }
 
 M.setup = function()
-	pea.utils.func.set_plugins_options(default.vim_setup_opts)
+	require("pea.utils.func").set_plugins_options(default.vim_opts)
 
-	require("nvim-tree").setup(default.lua_setup_opts)
+	require("nvim-tree").setup(default.lua_opts)
 end
 
 return M

@@ -1,13 +1,14 @@
 local M = {}
 
 M.setup = function()
-	pea.utils.key_mapping.set_keymap({
+	require("pea.utils.key_mapping").set_keymap({
 		normal = {
 			["K"] = [[:lua require("crates").show_versions_popup()<CR>]],
 			["F"] = [[:lua require("crates").show_features_popup()<CR>]],
 		},
 	})
 
+	vim.cmd("packadd crates.nvim")
 	require("crates").setup({
 		smart_insert = true,
 		avoid_prerelease = true,

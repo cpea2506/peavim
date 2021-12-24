@@ -64,7 +64,7 @@ M.setup = function()
 		rename_prompt_prefix = "➤",
 	})
 
-	pea.utils.key_mapping.set_keymap(key_map)
+	require("pea.utils.key_mapping").set_keymap(key_map)
 end
 
 return M

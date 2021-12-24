@@ -1,26 +1,69 @@
+local default_opts = {
+	wrap = true,
+	list = false,
+	hidden = true,
+	hlsearch = true,
+	swapfile = false,
+	smartcase = true,
+	linebreak = true,
+	lazyredraw = true,
+	expandtab = true,
+	termguicolors = true,
+	relativenumber = true,
+	smartindent = true,
+	autoindent = true,
+	showmode = false,
+	showcmd = false,
+	undofile = true,
+	title = true,
+	tabstop = 4,
+	scrolloff = 8,
+	cmdheight = 1,
+	shiftwidth = 4,
+	numberwidth = 2,
+	updatetime = 300,
+	sidescrolloff = 8,
+	mouse = "a",
+	signcolumn = "yes",
+	fillchars = "eob: ",
+	colorcolumn = "9999",
+	foldmethod = "manual",
+	clipboard = "unnamedplus",
+	guifont = "JetBrainsMonoMedium Nerd Font:h12",
+	completeopt = { "menu", "menuone", "noselect" },
+}
+
+local disabled_builtins = {
+	"netrw",
+	"netrwPlugin",
+	"netrwSettings",
+	"netrwFileHandlers",
+	"gzip",
+	"zip",
+	"zipPlugin",
+	"tar",
+	"tarPlugin",
+	"getscript",
+	"getscriptPlugin",
+	"vimball",
+	"vimballPlugin",
+	"2html_plugin",
+	"logipat",
+	"rrhelper",
+	"spellfile_plugin",
+	"matchit",
+}
+
 return {
-	theme = "one_monokai",
-	transparent_window = true,
-	format_on_save = true,
-	yank_highlight = true,
-	vim_opts = {},
-	plugins_opts = {},
-	plugins = {},
-	autocmd_opts = {},
-	keymap = {
-		normal = {},
-		insert = {},
-		visual = {},
-	},
-	builtin = {
-		dashboard = {},
-		null_ls = {
-			sources = {},
-		},
-		lsp = {
-			disabled_fmt = {},
-		},
-		lualine = "evil_lualine",
-	},
-	utils = require("pea.utils"),
+	setup = function()
+		-- disable unused builtin plugin
+		for _, plugin in pairs(disabled_builtins) do
+			vim.g["loaded_" .. plugin] = 1
+		end
+
+		local func = require("pea.utils.func")
+		local vim_extend = func.extend(default_opts, pea.vim_opts)
+
+		func.set_vim_options(vim_extend)
+	end,
 }
