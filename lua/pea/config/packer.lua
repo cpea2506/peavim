@@ -27,7 +27,7 @@ local plugins = {
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "lukas-reineke/indent-blankline.nvim" },
 	{ "mg979/vim-visual-multi", keys = "<C-n>" },
-	{ "wbthomason/packer.nvim", opt = true },
+	{ "wbthomason/packer.nvim" },
 	{
 		"simrat39/rust-tools.nvim",
 		ft = "rust",
@@ -115,10 +115,12 @@ local plugins = {
 
 M.setup = function()
 	local fn = vim.fn
+	local runtime_dir = fn.stdpath("data")
+	local package_root = runtime_dir .. "/site/pack"
+	local install_path = package_root .. "/packer/start/packer.nvim"
+	local compile_path = fn.stdpath("config") .. "/plugin/packer_compiled.lua"
+
 	local packer_bootstrap = nil
-	local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
-	local compile_path = "/Users/CPea2506/.config/nvim/plugin/packer_compiled.lua"
-	local package_root = fn.stdpath("data") .. "/site/pack"
 
 	if fn.empty(fn.glob(install_path)) > 0 then
 		packer_bootstrap = fn.system({
@@ -131,7 +133,6 @@ M.setup = function()
 		})
 	end
 
-	vim.cmd("packadd packer.nvim")
 	local _, packer = pcall(require, "packer")
 
 	packer.startup({

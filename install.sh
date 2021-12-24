@@ -1,7 +1,7 @@
 set -eo pipefail
 
 declare -r XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-"$HOME/.config"}"
-declare -r CONFIG_DIR="${CONFIG_DIR:-"$XDG_CONFIG_HOME/pvim"}"
+declare -r CONFIG_DIR="${CONFIG_DIR:-"$XDG_CONFIG_HOME/nvim"}"
 declare -r INSTALL_PREFIX="${INSTALL_PREFIX:-"$HOME/.local"}"
 
 function msg() {
@@ -19,37 +19,20 @@ function remove_old_cache_files() {
   fi
 }
 
-function setup_executable() {
-  if [ ! -d "$INSTALL_PREFIX/bin" ]; then
-    mkdir -p "$INSTALL_PREFIX/bin"
-  fi
-
-  cat >"$INSTALL_PREFIX/bin/pvim" <<EOF
-#!/bin/sh
-export CONFIG_DIR="\${CONFIG_DIR:-$CONFIG_DIR}"
-exec nvim -u "\$CONFIG_DIR/init.lua" "\$@"
-EOF
-  chmod +x "$INSTALL_PREFIX/bin/pvim"
-}
-
-function setup_pvim() {
+function setup_nvim() {
   remove_old_cache_files
-
-  msg "Installing Peavim executable"
-
-  setup_executable
 
   echo "Preparing Packer setup"
 
-  "$INSTALL_PREFIX/bin/pvim" --headless \
+  "nvim" --headless \
     -c 'autocmd User PackerComplete quitall' \
     -c 'PackerSync'
 
   echo "Packer setup complete"
 }
 
-function clone_pvim() {
-  # check if pvim has existed
+function clone_nvim() {
+  # check if nvim has existed
   [ -d "$CONFIG_DIR" ] && rm -rf $CONFIG_DIR
 
   msg "Cloning PeaVim configuration"
@@ -73,10 +56,10 @@ EOF
 
 function main() {
   print_logo
-  clone_pvim
-  setup_pvim
+  clone_nvim
+  setup_nvim
 
-  echo "You can start it by running: $INSTALL_PREFIX/bin/pvim"
+  echo "Enjoy with nvim"
 }
 
 main 
