@@ -52,7 +52,7 @@ function setup_pvim() {
 function clone_pvim() {
   echo "Cloning PeaVim configuration"
   if ! git clone \
-    --depth 1 "https://github.com/peavim.git" "$BASE_DIR"; then
+    --depth 1 "git@github.com:cpea2506/peavim.git" "$BASE_DIR"; then
     echo "Failed to clone repository. Installation failed."
     exit 1
   fi
