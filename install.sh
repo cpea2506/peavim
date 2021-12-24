@@ -27,7 +27,7 @@ function setup_executable() {
   cat >"$INSTALL_PREFIX/bin/pvim" <<EOF
 #!/bin/sh
 export CONFIG_DIR="\${CONFIG_DIR:-$CONFIG_DIR}"
-exec nvim -u "\$CONFIG_DIR/pvim/init.lua" "\$@"
+exec nvim -u "\$CONFIG_DIR/init.lua" "\$@"
 EOF
   chmod +x "$INSTALL_PREFIX/bin/pvim"
 }
