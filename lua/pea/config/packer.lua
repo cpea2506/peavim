@@ -133,9 +133,9 @@ M.setup = function()
 		})
 	end
 
-	local packer = require("pea.utils.func").prequire("packer")
+	local ok, packer = pcall(require, "packer")
 
-	if not packer then
+	if not ok then
 		return
 	end
 
