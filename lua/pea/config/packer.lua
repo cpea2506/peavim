@@ -1,5 +1,3 @@
-local M = {}
-
 local plugins = {
 	{ "tami5/lspsaga.nvim" },
 	{ "andweeb/presence.nvim" },
@@ -113,72 +111,68 @@ local plugins = {
 	},
 }
 
-M.setup = function()
-	local fn = vim.fn
-	local runtime_dir = fn.stdpath("data")
-	local package_root = runtime_dir .. "/site/pack"
-	local install_path = package_root .. "/packer/start/packer.nvim"
-	local compile_path = fn.stdpath("config") .. "/plugin/packer_compiled.lua"
+local fn = vim.fn
+local runtime_dir = fn.stdpath("data")
+local package_root = runtime_dir .. "/site/pack"
+local install_path = package_root .. "/packer/start/packer.nvim"
+local compile_path = fn.stdpath("config") .. "/plugin/packer_compiled.lua"
 
-	local packer_bootstrap = nil
+local packer_bootstrap = nil
 
-	if fn.empty(fn.glob(install_path)) > 0 then
-		packer_bootstrap = fn.system({
-			"git",
-			"clone",
-			"--depth",
-			"1",
-			"https://github.com/wbthomason/packer.nvim",
-			install_path,
-		})
-	end
-
-	local ok, packer = pcall(require, "packer")
-
-	if not ok then
-		return
-	end
-
-	packer.init({
-		package_root = package_root,
-		compile_path = compile_path,
-		plugin_package = "packer",
-		max_jobs = 50,
-		auto_clean = true,
-		compile_on_sync = true,
-		disable_commands = false,
-		opt_default = false,
-		transitive_opt = true,
-		transitive_disable = true,
-		auto_reload_compiled = true,
-		git = {
-			subcommands = {
-				clone_timeout = 300,
-				fetch = "fetch --no-tags --no-recurse-submodules --update-shallow --progress",
-			},
-		},
-		display = {
-			open_fn = function()
-				return require("packer.util").float({
-					border = "rounded",
-				})
-			end,
-		},
-		profile = {
-			enable = true,
-			threshold = 1,
-		},
+if fn.empty(fn.glob(install_path)) > 0 then
+	packer_bootstrap = fn.system({
+		"git",
+		"clone",
+		"--depth",
+		"1",
+		"https://github.com/wbthomason/packer.nvim",
+		install_path,
 	})
-
-	packer.startup(function(use)
-		for _, plug in pairs(plugins) do
-			use(plug)
-		end
-
-		if packer_bootstrap then
-			require("packer").sync()
-		end
-	end)
 end
 
-return M
+local ok, packer = pcall(require, "packer")
+
+if not ok then
+	return
+end
+
+packer.init({
+	package_root = package_root,
+	compile_path = compile_path,
+	plugin_package = "packer",
+	max_jobs = 50,
+	auto_clean = true,
+	compile_on_sync = true,
+	disable_commands = false,
+	opt_default = false,
+	transitive_opt = true,
+	transitive_disable = true,
+	auto_reload_compiled = true,
+	git = {
+		subcommands = {
+			clone_timeout = 300,
+			fetch = "fetch --no-tags --no-recurse-submodules --update-shallow --progress",
+		},
+	},
+	display = {
+		open_fn = function()
+			return require("packer.util").float({
+				border = "rounded",
+			})
+		end,
+	},
+	profile = {
+		enable = true,
+		threshold = 1,
+	},
+})
+
+packer.startup(function(use)
+	for _, plug in pairs(plugins) do
+		use(plug)
+	end
+
+	if packer_bootstrap then
+		require("packer").sync()
+	end
+end)
