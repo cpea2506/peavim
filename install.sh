@@ -1,14 +1,15 @@
 set -eo pipefail
 
+declare -r XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-"$HOME/.config"}"
+declare -r CONFIG_DIR="${CONFIG_DIR:-"$XDG_CONFIG_HOME/nvim"}"
 declare -r INSTALL_PREFIX="${INSTALL_PREFIX:-"$HOME/.local"}"
 
-declare -r XDG_DATA_HOME="${XDG_DATA_HOME:-"$HOME/.local/share"}"
-declare -r XDG_CACHE_HOME="${XDG_CACHE_HOME:-"$HOME/.cache"}"
-declare -r XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-"$HOME/.config"}"
-
-declare -r RUNTIME_DIR="${RUNTIME_DIR:-"$XDG_DATA_HOME/peavim"}"
-declare -r CONFIG_DIR="${CONFIG_DIR:-"$XDG_CONFIG_HOME/pvim"}"
-declare -r BASE_DIR="${BASE_DIR:-"$RUNTIME_DIR/pvim"}"
+function msg() {
+  local text="$1"
+  local div_width="80"
+  printf "%${div_width}s\n" ' ' | tr ' ' -
+  printf "%s\n" "$text"
+}
 
 function remove_old_cache_files() {
   local packer_cache="$CONFIG_DIR/plugin/packer_compiled.lua"
@@ -18,41 +19,25 @@ function remove_old_cache_files() {
   fi
 }
 
-function setup_shim() {
-  if [ ! -d "$INSTALL_PREFIX/bin" ]; then
-    mkdir -p "$INSTALL_PREFIX/bin"
-  fi
-
-  cat >"$INSTALL_PREFIX/bin/pvim" <<EOF
-#!/bin/sh
-export CONFIG_DIR="\${CONFIG_DIR:-$CONFIG_DIR}"
-export RUNTIME_DIR="\${RUNTIME_DIR:-$RUNTIME_DIR}"
-exec nvim -u "\$RUNTIME_DIR/pvim/init.lua" "\$@"
-EOF
-  chmod +x "$INSTALL_PREFIX/bin/pvim"
-}
-
-function setup_pvim() {
-
+function setup_nvim() {
   remove_old_cache_files
-
-  echo "Installing Peavim shim"
-
-  setup_shim
 
   echo "Preparing Packer setup"
 
-  "$INSTALL_PREFIX/bin/pvim" --headless \
+  "nvim" --headless \
     -c 'autocmd User PackerComplete quitall' \
     -c 'PackerSync'
 
   echo "Packer setup complete"
 }
 
-function clone_pvim() {
-  echo "Cloning PeaVim configuration"
+function clone_nvim() {
+  # check if nvim has existed
+  [ -d "$CONFIG_DIR" ] && rm -rf $CONFIG_DIR
+
+  msg "Cloning PeaVim configuration"
   if ! git clone \
-    --depth 1 "git@github.com:cpea2506/peavim.git" "$BASE_DIR"; then
+    --depth 1 "git@github.com:cpea2506/peavim.git" "$CONFIG_DIR"; then
     echo "Failed to clone repository. Installation failed."
     exit 1
   fi
@@ -71,10 +56,10 @@ EOF
 
 function main() {
   print_logo
-  clone_pvim
-  setup_pvim
+  clone_nvim
+  setup_nvim
 
-  echo "You can start it by running: $INSTALL_PREFIX/bin/pvim"
+  echo "Enjoy with nvim"
 }
 
-main "$@"
+main 
