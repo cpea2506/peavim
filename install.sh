@@ -3,6 +3,7 @@ set -eo pipefail
 declare -r XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-"$HOME/.config"}"
 declare -r CONFIG_DIR="${CONFIG_DIR:-"$XDG_CONFIG_HOME/nvim"}"
 declare -r INSTALL_PREFIX="${INSTALL_PREFIX:-"$HOME/.local"}"
+declare -r RUNTIME_DIR="${RUNTIME_DIR:-"$INSTALL_PREFIX/share/nvim"}"
 
 function msg() {
   local text="$1"
@@ -34,6 +35,8 @@ function setup_nvim() {
 function clone_nvim() {
   # check if nvim has existed
   [ -d "$CONFIG_DIR" ] && rm -rf $CONFIG_DIR
+  
+  mkdir -p $RUNTIME_DIR
 
   msg "Cloning PeaVim configuration"
   if ! git clone \
