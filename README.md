@@ -7,7 +7,8 @@
 	
 </div>
 
-## Preview
-This is my configuration for Neovim. Feel free to check it out!
+## Note
+As this configuration has so much errors because of my lack of Lua knowledge. I decided to move these configuration to [LunarVim](https://www.lunarvim.org/#opinionated) for better coding experience.
 
+## Preview
 <img width="1680" alt="Screen Shot 2021-12-11 at 23 15 54" src="https://user-images.githubusercontent.com/42694704/145685095-352d3614-716d-4484-a9b1-8fa73036d759.png">
